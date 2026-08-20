@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect x="4" y="4" width="54" height="54" rx="10" fill="#F8ECE7" stroke="#1A1A1A" stroke-width="4"/>
+  <rect x="8" y="8" width="54" height="54" rx="10" fill="#B24726" stroke="#1A1A1A" stroke-width="4"/>
+  <text x="35" y="42" font-family="'Courier New', monospace" font-weight="900" font-size="24" fill="#FFFFFF" text-anchor="middle">&lt;BG/&gt;</text>
+</svg>
