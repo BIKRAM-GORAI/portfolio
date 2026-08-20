@@ -9,7 +9,8 @@
 
 ## 🚀 Live Preview & Status
 
-- **Live Site:** [bikramgorai.xyz](https://bikramgorai.xyz) *(Deployed via Vercel)*
+- **Live Deployment:** [bikramgorai-portfolio.vercel.app](https://bikramgorai-portfolio.vercel.app/) *(Vercel Live App)*
+- **Custom Domain:** [bikramgorai.xyz](https://bikramgorai.xyz) *(Primary Domain)*
 - **GitHub Repository:** [BIKRAM-GORAI/portfolio](https://github.com/BIKRAM-GORAI/portfolio)
 - **Primary Stack:** HTML5, Modern CSS3 (Vanilla), JavaScript (ES6+), GSAP, ScrollTrigger, Formspree API
 
@@ -124,4 +125,5 @@ Asansol Engineering College (AEC), West Bengal, India
 - **Email:** [bikram77620@gmail.com](mailto:bikram77620@gmail.com)
 - **GitHub:** [@BIKRAM-GORAI](https://github.com/BIKRAM-GORAI)
 - **LinkedIn:** [bikram-gorai](https://www.linkedin.com/in/bikram-gorai/)
+- **Vercel App:** [bikramgorai-portfolio.vercel.app](https://bikramgorai-portfolio.vercel.app/)
 - **Portfolio:** [bikramgorai.xyz](https://bikramgorai.xyz)
