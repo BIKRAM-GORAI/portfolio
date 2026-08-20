@@ -15,7 +15,7 @@ const PORTFOLIO_DATA = {
     phone: "776-205-8095",
     github: "https://github.com/BIKRAM-GORAI",
     linkedin: "https://www.linkedin.com/in/bikram-gorai/",
-    domain: "https://bikramgorai.xyz"
+    domain: "https://bikramgorai.vercel.app"
   },
 
   hero: {

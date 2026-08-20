@@ -2,4 +2,3 @@ User-agent: *
 Allow: /
 
 Sitemap: https://bikramgorai.vercel.app/sitemap.xml
-Sitemap: https://bikramgorai.xyz/sitemap.xml
