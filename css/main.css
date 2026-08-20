@@ -1,0 +1,137 @@
+/* ==========================================================================
+   BIKRAM GORAI — PORTFOLIO MAIN CSS
+   Design System Tokens, Variables, Resets & Core Typography
+   Inspired by Aanand Madhav Editorial Design Aesthetic
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Core Color Tokens */
+  --bg-main: #F5F2EB;           /* Warm Linen Paper Cream Background */
+  --bg-card: linear-gradient(145deg, #FFFFFF 0%, #FAFAF7 100%); /* Lighter gradient background for distinct card contrast */
+  --bg-card-hover: linear-gradient(145deg, #FFFFFF 0%, #F5F1E8 100%);
+  --bg-dark: #1A1A1A;           /* Deep Charcoal Dark Surface */
+  --bg-terminal: #FFFFFF;       /* Crisp Light Terminal Surface */
+  
+  /* Text Colors */
+  --text-primary: #1A1A1A;      /* Deep Charcoal for Headings & Primary Text */
+  --text-secondary: #5A5852;    /* Slate Warm Olive Gray for Body & Subtitles */
+  --text-muted: #8C887E;        /* Muted Text & Caption Metadata */
+  --text-inverse: #F5F2EB;      /* Light Text on Dark Backgrounds */
+
+  /* Brand Accent Colors */
+  --accent-rust: #B24726;       /* Warm Terracotta / Rust Copper Accent */
+  --accent-rust-hover: #96391C; /* Darker Rust for Hover States */
+  --accent-rust-soft: rgba(178, 71, 38, 0.08); /* Soft Rust Tint Background */
+  --accent-green: #2E7D32;      /* Status Indicator Green */
+
+  /* Borders & Dividers */
+  --border-light: #DCD7CB;      /* Distinct Cream Border */
+  --border-medium: #1A1A1A;     /* Dark Solid Border for Neo-Brutalism */
+  --border-dark: #333333;       /* Dark Section Border */
+
+  /* Typography Families */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing System */
+  --container-max-width: 1360px;
+  --header-height: 64px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-pill: 9999px;
+
+  /* 3D Shadows & Elevation */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 4px 4px 0px #1A1A1A;
+  --shadow-lg: 6px 6px 0px #1A1A1A;
+  --shadow-3d: 4px 4px 0px #1A1A1A;
+  --shadow-3d-hover: 7px 7px 0px #1A1A1A;
+  --shadow-terminal: 6px 6px 0px #1A1A1A;
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 14.4px; /* 90% baseline scaling for comfortable, readable density */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection Highlight */
+::selection {
+  background-color: var(--accent-rust);
+  color: #FFFFFF;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+  font-weight: 400;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Container Utility */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.25rem;
+  }
+}

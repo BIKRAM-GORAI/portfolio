@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bikram Gorai — Backend & Full-Stack Developer</title>
+  <meta name="description" content="Portfolio of Bikram Gorai, a Computer Science & Engineering undergraduate specializing in backend architecture, Node.js APIs, offline-first applications, and AI integrations.">
+  <meta name="keywords" content="Bikram Gorai, Backend Developer, Full Stack Developer, Node.js, Express.js, MongoDB, Consistency Daily, Eventix, Anya AI">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER NAVIGATION BAR
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand-wrapper">
+        <a href="#hero" class="brand-meta" style="text-decoration: none;">
+          <span class="brand-name"><mark class="neo-highlight" style="font-size: 1.15rem; font-weight: 800;">Bikram Gorai</mark></span>
+          <span class="brand-title" style="margin-top: 0.2rem;">Backend / Full-Stack</span>
+        </a>
+      </div>      <nav>
+        <ul class="nav-menu">
+          <li><a href="#hero" class="nav-link active">Home</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#philosophy" class="nav-link">Philosophy</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#education" class="nav-link">Academics</a></li>
+          <li><a href="#hackathons" class="nav-link">Hackathons</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="search-icon-btn" id="search-palette-trigger" aria-label="Quick Search" title="Search (Ctrl+K)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <a href="assets/images/Resume.pdf" target="_blank" rel="noopener" class="btn-primary" style="padding: 0.5rem 0.95rem; font-size: 0.8rem;">Resume 📄</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+  <section id="hero" class="hero-section">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <h1 class="hero-headline">
+             _ IDEA<br>
+            Architecture<br>
+
+            <span class="highlight-rust">Product.</span>
+          </h1>
+
+          <p class="hero-bio">
+            I am a Computer Science &amp; Engineering undergraduate focused on <mark class="neo-highlight">backend logic</mark>, database architecture, API security, <mark class="neo-highlight-coral">offline-first systems</mark>, and turning technical concepts into real working applications.
+          </p>
+
+          <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+            <a href="#contact" class="btn-primary">Get in touch →</a>
+            <a href="assets/images/Resume.pdf" target="_blank" rel="noopener" class="btn-primary" style="background-color: var(--accent-rust); border-color: var(--accent-rust);">View Resume 📄</a>
+            <a href="https://github.com/BIKRAM-GORAI" target="_blank" rel="noopener" class="btn-secondary">GitHub Profile ↗</a>
+          </div>
+
+          <div class="hero-stats-row" style="margin-top: 3rem;">
+            <div class="stat-item">
+              <span class="stat-value">3+</span>
+              <span class="stat-label">Major Full-Stack Systems</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">30+</span>
+              <span class="stat-label">Active Users (Consistency)</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-value">3rd</span>
+              <span class="stat-label">CODE@FROST Hackathon</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-art-wrapper">
+          <img src="assets/images/0.png" alt="Bikram Gorai Transparent Portrait" class="hero-transparent-img">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       01 / NOW IN ROTATION (LIVE SNAPSHOT)
+       ========================================================================== -->
+  <section id="rotation" class="rotation-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-tag">01 / NOW IN ROTATION</div>
+      <h2 class="section-headline">A live snapshot of what is moving right now</h2>
+
+      <div class="rotation-grid">
+        <!-- Flagship Project Snapshot Card -->
+        <div class="rotation-card card-span-6">
+          <div>
+            <div class="card-category">FLAGSHIP WORK</div>
+            <h3 class="card-title">Consistency Daily — Offline-First & AI Productivity</h3>
+            <p class="card-description">
+              Built a full-stack habit tracking platform featuring IndexedDB client-side persistence, Groq AI coaching, squad accountability, distraction blocking, and API rate limiting. Over 30+ real-world users.
+            </p>
+          </div>
+          <div style="margin-top: 1.5rem;">
+            <a href="https://consistency-daily.vercel.app/" target="_blank" rel="noopener" class="link-arrow">Explore Live Application</a>
+          </div>
+        </div>
+
+        <!-- Current Learning Focus Card -->
+        <div class="rotation-card card-span-6">
+          <div>
+            <div class="card-category">DEVELOPMENT FOCUS</div>
+            <h3 class="card-title">Backend Engineering & Systems Design</h3>
+            <p class="card-description">
+              Deep diving into Node.js runtime, Express REST API optimization, MongoDB Mongoose schema design, API security middleware, authentication mechanisms, and C++ DSA fundamentals.
+            </p>
+          </div>
+          <div style="margin-top: 1.5rem;">
+            <a href="#projects" class="link-arrow">View Project Details</a>
+          </div>
+        </div>
+
+        <!-- DSA Card -->
+        <div class="rotation-card card-span-4">
+          <div class="card-category">DSA &amp; ALGORITHMS</div>
+          <h3 class="card-title" style="font-size: 1.15rem;">C++ Data Structures &amp; Algorithms</h3>
+          <p class="card-description" style="font-size: 0.875rem;">
+            Building problem-solving fundamentals in C++, practicing core topics such as dynamic programming, trees, graphs, recursion, and LeetCode problems.
+          </p>
+          <div style="margin-top: 1rem;">
+            <span class="tag-pill rust">C++ Practice</span>
+          </div>
+        </div>
+
+        <!-- DBMS & SQL Learning Card -->
+        <div class="rotation-card card-span-4">
+          <div class="card-category">DATABASE SYSTEMS</div>
+          <h3 class="card-title" style="font-size: 1.15rem;">Database Management &amp; SQL</h3>
+          <p class="card-description" style="font-size: 0.875rem;">
+            Studying relational database fundamentals, SQL query optimization, database normalization, indexing strategies, and ACID transaction properties.
+          </p>
+          <div style="margin-top: 1rem;">
+            <span class="tag-pill rust">DBMS &amp; SQL</span>
+          </div>
+        </div>
+
+        <!-- AI Experiment Card -->
+        <div class="rotation-card card-span-4">
+          <div class="card-category">AI EXPERIMENT</div>
+          <h3 class="card-title" style="font-size: 1.15rem;">Anya — Voice AI Vector Memory</h3>
+          <p class="card-description" style="font-size: 0.875rem;">
+            Voice-native AI companion utilizing 384-dimensional local vector embeddings for persistent memory and episodic logs.
+          </p>
+          <div style="margin-top: 1rem;">
+            <a href="https://anya-voice-ai.vercel.app/" target="_blank" rel="noopener" class="link-arrow">Try Anya Voice AI</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Running Marquee Ticker -->
+      <div class="marquee-wrapper">
+        <div class="marquee-content" id="marquee-content-track">
+          <span class="marquee-item"><span class="highlight">Log &gt;</span> IndexedDB offline data synchronization</span>
+          <span class="marquee-item"><span class="highlight">Log &gt;</span> Groq AI coach integration</span>
+          <span class="marquee-item"><span class="highlight">Log &gt;</span> Express API rate-limiting middleware</span>
+          <span class="marquee-item"><span class="highlight">Log &gt;</span> Automated PDF ticket QR code verification</span>
+          <span class="marquee-item"><span class="highlight">Log &gt;</span> 384-D local vector embeddings</span>
+          <span class="marquee-item"><span class="highlight">Log &gt;</span> C++ Data Structures &amp; Algorithms practice</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       02 / WORK (FEATURED PROJECTS SHOWCASE)
+       ========================================================================== -->
+  <section id="projects" class="projects-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-tag">02 / WORK</div>
+      <h2 class="section-headline">Fewer handoffs. Clearer backend logic.</h2>
+
+      <!-- Flagship Project: Consistency Daily -->
+      <div class="project-featured-card">
+        <div class="project-featured-content">
+          <div>
+            <div class="project-tag-row">
+              <span class="tag-pill rust">01 / FLAGSHIP PROJECT</span>
+              <span class="tag-pill">FULL-STACK</span>
+              <span class="tag-pill">OFFLINE-FIRST</span>
+            </div>
+
+            <h3 class="project-title">Consistency Daily</h3>
+            <p class="project-subtitle">
+              Full-Stack Habit Tracking, Social Accountability &amp; Groq AI Coaching Platform
+            </p>
+
+            <ul class="project-features-list">
+              <li>Built an <mark class="neo-highlight">offline-first architecture</mark> using IndexedDB local storage to ensure core features work without continuous internet.</li>
+              <li>Integrated <mark class="neo-highlight-rust">Groq-powered AI coaching</mark> to deliver personalized daily productivity feedback and habit recommendations.</li>
+              <li>Implemented Squad Accountability groups, LeetCode daily practice tracking, and distraction blocking tools.</li>
+              <li>Added backend API rate limiting and security validation to protect resources against excessive request spikes.</li>
+              <li>Grew to 30+ real-world active users with mobile APK support for cross-platform availability.</li>
+            </ul>
+          </div>
+
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <a href="https://consistency-daily.vercel.app/" target="_blank" rel="noopener" class="btn-primary">View Live App ↗</a>
+            <a href="https://github.com/BIKRAM-GORAI/consistency" target="_blank" rel="noopener" class="btn-secondary">GitHub Repo ↗</a>
+          </div>
+        </div>
+
+        <div class="project-featured-media">
+          <img src="assets/images/projects/consistency-daily.png" alt="Consistency Daily Platform Preview">
+        </div>
+      </div>
+
+      <!-- Secondary Projects Grid: Eventix & Anya -->
+      <div class="secondary-projects-grid">
+        <!-- Eventix Card -->
+        <div class="rotation-card">
+          <div>
+            <div class="project-tag-row" style="margin-bottom: 1rem;">
+              <span class="tag-pill rust">02 / EVENTIX</span>
+              <span class="tag-pill">NODE.JS + MONGODB</span>
+            </div>
+            <h3 class="card-title">Eventix — College Event Management &amp; QR Ticketing</h3>
+            <p class="card-description" style="margin-bottom: 1.25rem;">
+              Centralized platform for university clubs and student societies. Features multi-role portals, team registrations, automated PDF e-tickets with QR codes, and real-time QR attendance verification.
+            </p>
+            <div class="project-featured-media" style="aspect-ratio: 16/9; margin-bottom: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+              <img src="assets/images/projects/eventix.png" alt="Eventix Platform Preview">
+            </div>
+            <ul class="project-features-list" style="margin-bottom: 1.5rem;">
+              <li>Multi-role portal workflows for admins, clubs, and students</li>
+              <li><mark class="neo-highlight">Automated PDF e-ticket generation</mark> with dynamic QR codes</li>
+              <li>Real-time attendance scanning interface for venue check-ins</li>
+            </ul>
+          </div>
+          <div style="display: flex; gap: 1rem;">
+            <a href="https://eventix-olive.vercel.app/" target="_blank" rel="noopener" class="link-arrow">Live Demo</a>
+            <a href="https://github.com/BIKRAM-GORAI/Eventix" target="_blank" rel="noopener" class="link-arrow">GitHub</a>
+          </div>
+        </div>
+
+        <!-- Anya Voice AI Card -->
+        <div class="rotation-card">
+          <div>
+            <div class="project-tag-row" style="margin-bottom: 1rem;">
+              <span class="tag-pill rust">03 / ANYA</span>
+              <span class="tag-pill">VOICE AI</span>
+              <span class="tag-pill">VECTOR MEMORY</span>
+            </div>
+            <h3 class="card-title">Anya — Voice-Native AI Companion with 384-D Memory</h3>
+            <p class="card-description" style="margin-bottom: 1.25rem;">
+              A conversational voice AI companion featuring 384-dimensional local vector embeddings for long-term memory persistence, episodic event logging, and adaptive personality tracking.
+            </p>
+            <div class="project-featured-media" style="aspect-ratio: 16/9; margin-bottom: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-light);">
+              <img src="assets/images/projects/anya.png" alt="Anya Voice AI Preview">
+            </div>
+            <ul class="project-features-list" style="margin-bottom: 1.5rem;">
+              <li><mark class="neo-highlight">384-D local vector embeddings</mark> for semantic context recall</li>
+              <li>Episodic event logs preserving interaction history</li>
+              <li>Hands-free voice conversational workflow</li>
+            </ul>
+          </div>
+          <div style="display: flex; gap: 1rem;">
+            <a href="https://anya-voice-ai.vercel.app/" target="_blank" rel="noopener" class="link-arrow">Live Demo</a>
+            <a href="https://github.com/BIKRAM-GORAI/voice-first-ai-companion" target="_blank" rel="noopener" class="link-arrow">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       03 / ENGINEERING PHILOSOPHY & EDITORIAL QUOTE
+       ========================================================================== -->
+  <section id="philosophy" class="philosophy-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-tag" style="margin-bottom: 1.5rem;">03 / PHILOSOPHY &amp; APPROACH</div>
+
+      <div class="philosophy-grid">
+        <div class="philosophy-media">
+          <img src="assets/images/1.png" alt="Bikram Gorai Transparent Portrait" class="philosophy-transparent-img">
+        </div>
+
+        <div class="quote-container">
+          <blockquote class="editorial-quote font-serif">
+            <!-- "The struggle made the approval sweeter. The uncertainty made the arrival meaningful. Going solo made me realize I don't need perfect conditions to begin." -->
+             “Every project started as an idea and <mark class="neo-highlight">became a lesson</mark>. The bugs, failures, late nights, and small wins slowly <mark class="neo-highlight-rust">turned curiosity</mark> into the way I build today.”
+          </blockquote>
+
+          <div class="quote-author-row">
+            <div class="author-info">
+              <span class="author-name">Bikram Gorai</span>
+              <span class="author-role">Backend &amp; Full-Stack Undergraduate Engineer</span>
+            </div>
+
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+              HOBBY: LANDSCAPE &amp; PORTRAIT PHOTOGRAPHY · ASANSOL, INDIA
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       04 / HACKATHONS & COMPETITIONS
+       ========================================================================== -->
+  <section id="hackathons" class="hackathon-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-tag">04 / LAB &amp; HACKATHONS</div>
+      <h2 class="section-headline">Building under time constraints.</h2>
+
+      <div class="hackathon-grid">
+        <!-- CODE@FROST Hackathon Card -->
+        <div class="hackathon-card">
+          <div>
+            <div class="award-pill">🏆 3RD PLACE &amp; BEST BUDDY AWARD</div>
+            <h3 class="card-title">CODE@FROST 36-Hour Non-Stop Hackathon</h3>
+            <p class="card-description" style="margin-bottom: 1.25rem;">
+              Secured 3rd position out of AEC with team <em>The Enigmatic</em> under the Glacier Commerce (FinTech &amp; E-Commerce) track.
+            </p>
+            <p class="card-description">
+              Built a <strong>Hyperlocal Skill Exchange Platform</strong> connecting local service professionals (plumbers, tutors, electricians) within a 5–10 km radius via location-based discovery, bidding, and reputation trust scoring.
+            </p>
+          </div>
+          <div style="margin-top: 1.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+            TEAM: Bikram, Debjeet Dey, Baidyanath Mahato, Ayush Maji
+          </div>
+        </div>
+
+        <!-- Overclocked Hackathon Card -->
+        <div class="hackathon-card">
+          <div>
+            <div class="award-pill" style="color: var(--text-primary); background-color: var(--bg-main); border-color: var(--border-medium);">
+              ⚡ OVERCLOCKED HACKATHON
+            </div>
+            <h3 class="card-title">Overclocked AEC — Campus Eventix Platform</h3>
+            <p class="card-description" style="margin-bottom: 1.25rem;">
+              Participated in the offline hackathon organized by Development Society AEC, conceptualizing and building the initial prototype of <strong>Eventix</strong> under high-pressure time constraints.
+            </p>
+            <p class="card-description">
+              Gained practical experience in team collaboration under pressure, rapid API prototyping, presentation strategies, and failure-driven architectural improvements.
+            </p>
+          </div>
+          <div style="margin-top: 1.75rem; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+            DEVELOPMENT SOCIETY AEC · TEAM OF 3
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       05 / SKILLS & TECHNOLOGY STACK
+       ========================================================================== -->
+  <section id="skills" class="skills-section reveal-on-scroll">
+    <div class="section-bg-blur-container">
+      <img src="assets/images/photography/bg1.png" alt="Photography Background" class="section-bg-blur-img">
+    </div>
+    <div class="container">
+      <div class="section-tag">05 / TECHNICAL TOOLKIT</div>
+      <h2 class="section-headline">Backend architecture, databases &amp; core frameworks</h2>
+
+      <div class="skills-grid">
+        <!-- Backend Engineering Card -->
+        <div class="skill-card">
+          <div class="skill-category-header">
+            <h3 class="skill-category-title">Backend Engineering</h3>
+            <p class="skill-category-desc">Primary focus: Server-side logic, API design, security &amp; rate limiting.</p>
+          </div>
+          <div class="skill-chips-wrap">
+            <span class="tag-pill rust">Node.js</span>
+            <span class="tag-pill rust">Express.js</span>
+            <span class="tag-pill">REST APIs</span>
+            <span class="tag-pill">API Security</span>
+            <span class="tag-pill">Rate Limiting</span>
+            <span class="tag-pill">OTP / SMTP Email</span>
+            <span class="tag-pill">GitHub OAuth</span>
+            <span class="tag-pill">Middleware</span>
+          </div>
+        </div>
+
+        <!-- Databases & Client Persistence Card -->
+        <div class="skill-card">
+          <div class="skill-category-header">
+            <h3 class="skill-category-title">Databases &amp; Storage</h3>
+            <p class="skill-category-desc">NoSQL document stores, relational DBMS, and client-side offline storage.</p>
+          </div>
+          <div class="skill-chips-wrap">
+            <span class="tag-pill rust">MongoDB</span>
+            <span class="tag-pill rust">Mongoose ODM</span>
+            <span class="tag-pill rust">IndexedDB (Offline)</span>
+            <span class="tag-pill">SQL &amp; DBMS</span>
+            <span class="tag-pill">MongoDB Atlas</span>
+            <span class="tag-pill">Schema Design</span>
+          </div>
+        </div>
+
+        <!-- Languages & Algorithms Card -->
+        <div class="skill-card">
+          <div class="skill-category-header">
+            <h3 class="skill-category-title">Languages &amp; Core Logic</h3>
+            <p class="skill-category-desc">Primary programming languages for system development and DSA.</p>
+          </div>
+          <div class="skill-chips-wrap">
+            <span class="tag-pill rust">JavaScript (ES6+)</span>
+            <span class="tag-pill rust">C++ (DSA)</span>
+            <span class="tag-pill">Python (Flask / AI)</span>
+            <span class="tag-pill">Data Structures</span>
+            <span class="tag-pill">Algorithms</span>
+          </div>
+        </div>
+
+        <!-- Frontend & UI Card -->
+        <div class="skill-card">
+          <div class="skill-category-header">
+            <h3 class="skill-category-title">Frontend &amp; User Interfaces</h3>
+            <p class="skill-category-desc">Functional, responsive client interfaces for full-stack applications.</p>
+          </div>
+          <div class="skill-chips-wrap">
+            <span class="tag-pill">HTML5</span>
+            <span class="tag-pill">CSS3</span>
+            <span class="tag-pill">JavaScript (DOM)</span>
+            <span class="tag-pill rust">GSAP Motion</span>
+            <span class="tag-pill">Responsive Design</span>
+          </div>
+        </div>
+
+        <!-- AI Integration & Data Analysis Card -->
+        <div class="skill-card">
+          <div class="skill-category-header">
+            <h3 class="skill-category-title">AI Integration &amp; Data Analysis</h3>
+            <p class="skill-category-desc">Integrating AI APIs, prompt engineering, CSV data analysis, and graph generation.</p>
+          </div>
+          <div class="skill-chips-wrap">
+            <span class="tag-pill rust">AI API Integration</span>
+            <span class="tag-pill rust">Prompt Engineering</span>
+            <span class="tag-pill">CSV Data Analysis</span>
+            <span class="tag-pill">Graph Generation</span>
+            <span class="tag-pill">Basic ML Concepts</span>
+          </div>
+        </div>
+
+        <!-- Tools & Workflow Card -->
+        <div class="skill-card">
+          <div class="skill-category-header">
+            <h3 class="skill-category-title">Developer Tools &amp; Cloud</h3>
+            <p class="skill-category-desc">Version control, API testing tools, and hosting platforms.</p>
+          </div>
+          <div class="skill-chips-wrap">
+            <span class="tag-pill rust">Git</span>
+            <span class="tag-pill rust">GitHub</span>
+            <span class="tag-pill">Vercel</span>
+            <span class="tag-pill">Postman / REST Clients</span>
+            <span class="tag-pill">Nodemailer</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       06 / ACADEMICS & EDUCATION TIMELINE
+       ========================================================================== -->
+  <section id="education" class="education-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-tag">06 / ACADEMIC FOUNDATIONS</div>
+      <h2 class="section-headline">Education &amp; academic milestones</h2>
+
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <!-- Milestone 1: Asansol Engineering College -->
+        <div class="timeline-item reveal-on-scroll">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-badge-row">
+              <span class="timeline-period">2024 — 2028 · CURRENTLY IN 3RD YEAR</span>
+              <span class="timeline-score">CGPA: 8.12 / 10</span>
+            </div>
+            <h3 class="timeline-degree">B.Tech in Computer Science &amp; Engineering</h3>
+            <div class="timeline-institution">Asansol Engineering College (AEC), West Bengal</div>
+            <p class="timeline-details">
+              Focusing on backend architecture, database management systems, operating systems, networking, and Data Structures &amp; Algorithms in C++. Actively building full-stack applications and participating in campus hackathons.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 2: Valley Public School, Patlabari -->
+        <div class="timeline-item reveal-on-scroll">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-badge-row">
+              <span class="timeline-period">2022 — 2023 · CLASS XI &amp; XII</span>
+              <span class="timeline-score">71% SCORE</span>
+            </div>
+            <h3 class="timeline-degree">Higher Secondary Education (Science Stream)</h3>
+            <div class="timeline-institution">Valley Public School, Patlabari</div>
+            <p class="timeline-details">
+              Studied Class XI and Class XII Senior Secondary coursework (2022–2023) with core emphasis on Physics, Chemistry, Mathematics, and Computer Science fundamentals.
+            </p>
+          </div>
+        </div>
+
+        <!-- Milestone 3: Loyola School, Taldanga -->
+        <div class="timeline-item reveal-on-scroll">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-badge-row">
+              <span class="timeline-period">2012 — 2021 · CLASS I TO X (ICSE)</span>
+              <span class="timeline-score">86.7% SCORE</span>
+            </div>
+            <h3 class="timeline-degree">Indian Certificate of Secondary Education (ICSE)</h3>
+            <div class="timeline-institution">Loyola School, Taldanga</div>
+            <p class="timeline-details">
+              Studied from Class I through Class X (2012–2021) at Loyola School, completing the Class X ICSE board examination with 86.7% aggregate, developing strong logical reasoning, mathematical foundations, and early computer application concepts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       07 / CONTACT & INTERACTIVE TERMINAL INTAKE FORM
+       ========================================================================== -->
+  <section id="contact" class="contact-section reveal-on-scroll">
+    <div class="section-bg-blur-container">
+      <img src="assets/images/photography/bg4.png" alt="Atmospheric Photography Background" class="section-bg-blur-img">
+    </div>
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-left">
+          <div class="section-tag">07 / CONTACT</div>
+          <h2 class="contact-headline">
+            Got an interesting <span>problem?</span><br>
+            Let's talk about it.
+          </h2>
+
+          <p class="contact-lead">
+            I am open to software engineering internships, backend development roles, collaborative projects, and technical discussions. Read every message and respond promptly.
+          </p>
+
+          <div class="social-links-list">
+            <a href="assets/images/Resume.pdf" target="_blank" rel="noopener" class="social-link-item" style="border-color: var(--accent-rust); background-color: var(--accent-rust-soft);">
+              <span style="font-weight: 700; color: var(--accent-rust);">View / Download Resume (PDF)</span>
+              <span>📄 ↗</span>
+            </a>
+            <a href="mailto:bikram77620@gmail.com" class="social-link-item">
+              <span>Email: bikram77620@gmail.com</span>
+              <span>↗</span>
+            </a>
+            <a href="https://github.com/BIKRAM-GORAI" target="_blank" rel="noopener" class="social-link-item">
+              <span>GitHub: github.com/BIKRAM-GORAI</span>
+              <span>↗</span>
+            </a>
+            <a href="https://www.linkedin.com/in/bikram-gorai/" target="_blank" rel="noopener" class="social-link-item">
+              <span>LinkedIn: linkedin.com/in/bikram-gorai</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Terminal CLI Intake Form -->
+        <div class="contact-right">
+          <div class="terminal-wrapper">
+            <div class="terminal-header">
+              <div class="terminal-controls">
+                <span class="dot-control dot-red"></span>
+                <span class="dot-control dot-yellow"></span>
+                <span class="dot-control dot-green"></span>
+              </div>
+              <span>BIKRAM GORAI TERMINAL [V1.0.0]</span>
+              <span>STRUCTURED INTAKE</span>
+            </div>
+
+            <!-- Animated Dispatch Overlay (Mailbox to Airplane SVG Animation) -->
+            <div class="send-animation-overlay" id="send-animation-overlay">
+              <div class="send-animation-card">
+                <div class="send-svg-container">
+                  <img src="assets/images/send-message.svg" alt="Sending Message Animation" class="send-message-svg-img" id="send-message-svg-img">
+                </div>
+                <div class="send-status-title" id="send-status-title">PACKAGING MISSION...</div>
+                <div class="send-status-sub" id="send-status-sub">GUEST@BIKRAM:~$ PREPARING MAILBOX INTAKE</div>
+              </div>
+            </div>
+
+            <form id="terminal-intake-form" class="terminal-body" action="https://formspree.io/f/mgawdaol" method="POST">
+              <!-- Formspree Email Header & Subject -->
+              <input type="hidden" name="_subject" value="New Message Received from Portfolio 2.0 Website">
+              <input type="hidden" name="[HEADER] SOURCE" value="THIS MESSAGE IS RECEIVED FROM THE PORTFOLIO 2.0 WEBSITE">
+
+              <!-- Full Question Names for Pill Selections -->
+              <input type="hidden" name="[?] WHAT KIND OF CONVERSATION IS THIS?" id="hidden-conversation-type" value="PROJECT">
+              <input type="hidden" name="[?] PRIMARY FOCUS AREA?" id="hidden-primary-focus" value="BACKEND">
+
+              <div class="terminal-prompt">GUEST@BIKRAM:~$ INIT-COLLAB</div>
+
+              <div class="form-group">
+                <label class="form-label">[?] WHAT KIND OF CONVERSATION IS THIS?</label>
+                <div class="pill-selector-group" id="group-type">
+                  <div class="pill-option active" data-value="PROJECT">PROJECT</div>
+                  <div class="pill-option" data-value="INTERNSHIP / JOB">INTERNSHIP / JOB</div>
+                  <div class="pill-option" data-value="COLLAB">COLLAB</div>
+                  <div class="pill-option" data-value="SOMETHING ELSE">SOMETHING ELSE</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="terminal-name">[?] WHAT IS YOUR NAME?</label>
+                <input type="text" id="terminal-name" name="[?] WHAT IS YOUR NAME?" class="terminal-input" placeholder="Your name or company..." required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">[?] PRIMARY FOCUS AREA?</label>
+                <div class="pill-selector-group" id="group-focus">
+                  <div class="pill-option active" data-value="BACKEND">BACKEND</div>
+                  <div class="pill-option" data-value="FULL-STACK">FULL-STACK</div>
+                  <div class="pill-option" data-value="OFFLINE-FIRST">OFFLINE-FIRST</div>
+                  <div class="pill-option" data-value="AI INTEGRATION">AI INTEGRATION</div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="terminal-message">[?] BRIEF MISSION DESCRIPTION:</label>
+                <textarea id="terminal-message" name="[?] BRIEF MISSION DESCRIPTION:" class="terminal-textarea" rows="3" placeholder="What are you building, fixing, or hiring for?" required></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="terminal-email">[?] YOUR EMAIL ADDRESS:</label>
+                <input type="email" id="terminal-email" name="[?] YOUR EMAIL ADDRESS:" class="terminal-input" placeholder="you@example.com" required>
+              </div>
+
+              <div class="terminal-footer">
+                <span class="terminal-note" id="terminal-status-note">YOUR MESSAGE, STRAIGHT TO MY INBOX.</span>
+                <button type="submit" class="btn-primary" id="terminal-submit-btn">SEND MISSION →</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="site-footer container">
+    <div>© 2026 BIKRAM GORAI. BUILT IN ASANSOL, INDIA.</div>
+    <div>BACKEND · FULL-STACK · SYSTEMS</div>
+  </footer>
+
+  <!-- ==========================================================================
+       COMMAND PALETTE SEARCH MODAL (Ctrl+K)
+       ========================================================================== -->
+  <div class="palette-overlay" id="search-palette-modal">
+    <div class="palette-modal">
+      <div class="palette-input-wrapper">
+        <span class="palette-icon">&gt;_</span>
+        <input type="text" id="palette-search-input" class="palette-input" placeholder="Search projects, hackathons, skills, or links..." autocomplete="off">
+        <button type="button" class="palette-close-btn" id="palette-close-btn" title="Close Search Modal (Esc)" aria-label="Close search">
+          <span>ESC</span> ✕
+        </button>
+      </div>
+      <ul class="palette-results" id="palette-results-list">
+        <!-- Dynamic search results rendered via JS -->
+      </ul>
+      <div class="palette-footer-hint">
+        <span><kbd>↑</kbd><kbd>↓</kbd> NAVIGATE</span>
+        <span><kbd>↵</kbd> SELECT</span>
+        <span><kbd>ESC</kbd> CLOSE</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GSAP Animation Engine & Plugins -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+  <!-- Desktop Floating Swinging Scroll Widget (Thor's Hammer — Mjolnir) -->
+  <div class="scroll-rope-widget" id="scroll-rope-widget">
+    <div class="scroll-rope-line" id="scroll-rope-line"></div>
+    <div class="mjolnir-hammer-wrap" id="scroll-swing-block" title="Thor's Hammer (Mjolnir) — Click to Scroll to Top">
+      <!-- Wrapped Rope Knot tied around top portion of Handle -->
+      <div class="rope-tied-knot" title="Tied with Rope">
+        <span class="rope-loop"></span>
+        <span class="rope-loop"></span>
+        <span class="rope-loop"></span>
+      </div>
+      <!-- Handle Shaft extending through knot into Hammer Head -->
+      <div class="mjolnir-handle">
+        <div class="handle-top-stub"></div>
+        <div class="handle-strap"></div>
+        <div class="handle-strap"></div>
+        <div class="handle-strap"></div>
+      </div>
+      <!-- Light Asgardian Metallic Silver-White Head -->
+      <div class="mjolnir-head">
+        <span class="scroll-pct-text" id="scroll-pct-text">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
+  <script src="js/data.js"></script>
+  <script src="js/live-clock.js"></script>
+  <script src="js/terminal-intake.js"></script>
+  <script src="js/search-palette.js"></script>
+  <script src="js/scroll-rope.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>

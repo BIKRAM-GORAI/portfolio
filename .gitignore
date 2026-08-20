@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment & Config
+.env
+.env.local
+.env*.local
+
+# IDE & OS Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Vercel & Build Artifacts
+.vercel
+dist/
+build/
