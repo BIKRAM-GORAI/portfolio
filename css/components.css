@@ -63,6 +63,36 @@
   box-shadow: 5px 5px 0px #1A1A1A;
 }
 
+/* Terracotta Rust Button Variant */
+.btn-rust {
+  background: linear-gradient(135deg, #C25330 0%, #B24726 100%) !important;
+  color: #FFFFFF !important;
+  border: 1.5px solid #1A1A1A !important;
+  box-shadow: 3px 3px 0px #1A1A1A !important;
+}
+
+.btn-rust:hover {
+  background: linear-gradient(135deg, #D45D39 0%, #C25330 100%) !important;
+  color: #FFFFFF !important;
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 5px 5px 0px #1A1A1A !important;
+}
+
+/* Warm Mustard Yellow Button Variant */
+.btn-mustard {
+  background: linear-gradient(135deg, #F8D162 0%, #F3C649 100%) !important;
+  color: #1A1A1A !important;
+  border: 1.5px solid #1A1A1A !important;
+  box-shadow: 3px 3px 0px #1A1A1A !important;
+}
+
+.btn-mustard:hover {
+  background: linear-gradient(135deg, #F9D977 0%, #F5CE5C 100%) !important;
+  color: #1A1A1A !important;
+  transform: translate(-2px, -2px) !important;
+  box-shadow: 5px 5px 0px #1A1A1A !important;
+}
+
 .btn-sm {
   padding: 0.55rem 1rem;
   font-size: 0.8rem;
