@@ -1419,13 +1419,14 @@
   mark.neo-highlight, span.neo-highlight,
   mark.neo-highlight-rust, span.neo-highlight-rust,
   mark.neo-highlight-coral, span.neo-highlight-coral {
-    font-size: 0.82rem;
-    padding: 0.1rem 0.35rem;
+    font-size: 0.85em;
+    padding: 0.12em 0.35em;
+    margin: 0 0.08em;
     box-shadow: 1.5px 1.5px 0px #1A1A1A;
-    display: inline-flex;
-    max-width: 100%;
-    white-space: normal;
-    word-break: break-word;
+    display: inline;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    vertical-align: baseline;
   }
 
   .editorial-quote {

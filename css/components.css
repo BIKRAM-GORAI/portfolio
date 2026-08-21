@@ -158,64 +158,52 @@
 mark.neo-highlight, span.neo-highlight {
   background-color: #F3C649;  /* Soft Warm Mustard Yellow */
   color: #1A1A1A;
-  padding: 0.1rem 0.4rem;
+  padding: 0.15em 0.45em;
+  margin: 0 0.1em;
   border-radius: 4px;
   border: 1.25px solid #1A1A1A;
   box-shadow: 2px 2px 0px #1A1A1A;
   font-style: normal;
-  display: inline-flex;
-  align-items: center;
-  max-width: 100%;
-  vertical-align: middle;
-  line-height: 1.25;
-  transform: rotate(-0.8deg);
-  transition: transform var(--transition-fast);
-}
-
-mark.neo-highlight:hover, span.neo-highlight:hover {
-  transform: rotate(0deg) scale(1.02);
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: 1.4;
+  vertical-align: baseline;
+  transition: background-color var(--transition-fast);
 }
 
 mark.neo-highlight-rust, span.neo-highlight-rust {
   background-color: #B24726;  /* Warm Terracotta Rust */
   color: #FFFFFF;
-  padding: 0.1rem 0.4rem;
+  padding: 0.15em 0.45em;
+  margin: 0 0.1em;
   border-radius: 4px;
   border: 1.25px solid #1A1A1A;
   box-shadow: 2px 2px 0px #1A1A1A;
   font-style: normal;
-  display: inline-flex;
-  align-items: center;
-  max-width: 100%;
-  vertical-align: middle;
-  line-height: 1.25;
-  transform: rotate(0.8deg);
-  transition: transform var(--transition-fast);
-}
-
-mark.neo-highlight-rust:hover, span.neo-highlight-rust:hover {
-  transform: rotate(0deg) scale(1.02);
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: 1.4;
+  vertical-align: baseline;
+  transition: background-color var(--transition-fast);
 }
 
 mark.neo-highlight-coral, span.neo-highlight-coral {
   background-color: #E89874;  /* Muted Warm Coral */
   color: #1A1A1A;
-  padding: 0.1rem 0.4rem;
+  padding: 0.15em 0.45em;
+  margin: 0 0.1em;
   border-radius: 4px;
   border: 1.25px solid #1A1A1A;
   box-shadow: 2px 2px 0px #1A1A1A;
   font-style: normal;
-  display: inline-flex;
-  align-items: center;
-  max-width: 100%;
-  vertical-align: middle;
-  line-height: 1.25;
-  transform: rotate(-0.6deg);
-  transition: transform var(--transition-fast);
-}
-
-mark.neo-highlight-coral:hover, span.neo-highlight-coral:hover {
-  transform: rotate(0deg) scale(1.02);
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: 1.4;
+  vertical-align: baseline;
+  transition: background-color var(--transition-fast);
 }
 
 /* --------------------------------------------------------------------------
