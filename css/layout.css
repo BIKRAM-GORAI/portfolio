@@ -1012,8 +1012,8 @@
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
 }
 
 .skill-card {
@@ -1213,18 +1213,15 @@
   transform: translate(-3px, -3px) rotate(0deg);
 }
 
-/* Skills Grid Organic Column Offsets */
+/* Skills Grid 2x2 Layout Alignment */
 .skills-grid .skill-card:nth-child(2) {
-  margin-top: 1.25rem;
+  margin-top: 0;
 }
 .skills-grid .skill-card:nth-child(4) {
-  transform: rotate(-0.6deg);
+  transform: rotate(-0.5deg);
 }
 .skills-grid .skill-card:nth-child(4):hover {
   transform: translate(-3px, -3px) rotate(0deg);
-}
-.skills-grid .skill-card:nth-child(6) {
-  margin-top: 1rem;
 }
 
 /* Education Timeline Asymmetric Insets & Rotations */

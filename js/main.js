@@ -50,3 +50,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+/* ==========================================================================
+   4. Background Asset Preloader (Low Priority Post-Landing Cache)
+   Ensures hero loads instantly, then caches all secondary images in background
+   ========================================================================== */
+(function preloadPortfolioAssets() {
+  const assetsToPreload = [
+    'assets/images/projects/consistency-daily.png',
+    'assets/images/projects/eventix.png',
+    'assets/images/projects/anya.png',
+    'assets/images/photography/bg1.png',
+    'assets/images/photography/bg4.png',
+    'assets/images/send-message.svg'
+  ];
+
+  function cacheImages() {
+    assetsToPreload.forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+  }
+
+  if (document.readyState === 'complete') {
+    cacheImages();
+  } else {
+    window.addEventListener('load', () => {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(cacheImages, { timeout: 2000 });
+      } else {
+        setTimeout(cacheImages, 200);
+      }
+    });
+  }
+})();

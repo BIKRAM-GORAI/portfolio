@@ -8,7 +8,7 @@ const PORTFOLIO_DATA = {
     name: "Bikram Gorai",
     title: "Backend / Full-Stack Developer",
     location: "Asansol, West Bengal, India",
-    college: "Engineering College West Bengal",
+    college: "Asansol Engineering College (AEC), West Bengal",
     degree: "B.Tech in Computer Science and Engineering (2024–2028)",
     cgpa: "8.12 / 10",
     email: "bikram77620@gmail.com",
@@ -21,7 +21,7 @@ const PORTFOLIO_DATA = {
   hero: {
     status: "OPEN FOR BACKEND & FULL-STACK ROLES",
     headlinePart1: "Backend.",
-    headlinePart2: "Architect.",
+    headlinePart2: "Developer.",
     headlinePart3: "Builder.",
     bio: "I am a Computer Science undergraduate focused on backend logic, database design, API security, offline-first architectures, and building real-world full-stack applications.",
     stats: [
@@ -67,8 +67,8 @@ const PORTFOLIO_DATA = {
       {
         span: "card-span-4",
         category: "AI EXPERIMENT",
-        title: "Anya — Voice AI Vector Memory",
-        description: "Voice-native AI companion using 384-dimensional local vector embeddings for episodic long-term memory.",
+        title: "Anya — Voice AI & Persistent Memory",
+        description: "Voice-native AI companion featuring persistent local memory, episodic conversation history, and adaptive context tracking.",
         linkText: "View Anya ↗",
         linkUrl: "https://anya-voice-ai.vercel.app/"
       }
@@ -123,17 +123,17 @@ const PORTFOLIO_DATA = {
       id: "anya",
       priority: "03 / AI EXPERIMENT",
       title: "Anya",
-      subtitle: "Voice-Native AI Companion with 384-D Vector Memory",
-      description: "Voice-native conversational AI companion equipped with 384-dimensional local vector embeddings for persistent memory, episodic event logs, and adaptive personality tracking.",
-      tech: ["JavaScript", "Node.js", "Express.js", "MongoDB", "Vector Embeddings", "AI APIs"],
+      subtitle: "Voice-Native AI Companion with Persistent Memory",
+      description: "Built a voice-native AI companion with persistent local memory, episodic conversation history, and adaptive personality tracking.",
+      tech: ["JavaScript", "Node.js", "Express.js", "MongoDB", "Vanilla JS", "AI APIs"],
       liveUrl: "https://anya-voice-ai.vercel.app/",
       githubUrl: "https://github.com/BIKRAM-GORAI/voice-first-ai-companion",
       image: "assets/images/projects/anya.png",
       features: [
-        "384-Dimensional Vector Embeddings for semantic long-term memory",
-        "Episodic Event Logs retaining past conversation context",
-        "Adaptive Personality Tracking that adjusts responses over time",
-        "Voice-first conversational interaction mode"
+        "Implemented persistent local memory for retaining conversational context",
+        "Added episodic conversation history to maintain relevant interaction context",
+        "Built adaptive personality tracking based on accumulated conversations",
+        "Developed a hands-free voice-based conversational workflow"
       ]
     }
   ],
@@ -141,15 +141,15 @@ const PORTFOLIO_DATA = {
   hackathons: [
     {
       title: "CODE@FROST Hackathon (36-Hour Non-stop)",
-      award: "3rd Place (AEC) + Best Buddy Award",
-      team: "The Enigmatic (Bikram Gorai, Debjeet Dey, Baidyanath Mahato, Ayush Maji)",
+      award: "3rd Place + Best Buddy Award",
+      team: "Team: Bikram Gorai, Debjeet Dey, Baidyanath Mahato, Ayush Maji",
       track: "Glacier Commerce — FinTech & E-Commerce",
-      description: "Built a Hyperlocal Skill Exchange Platform enabling service discovery (plumbers, tutors, electricians) within a 5-10 km radius, featuring bidding, reputation scoring, and provider-customer interactions under intense 36-hour time constraints."
+      description: "Secured 3rd place in a 36-hour hackathon and received the Best Buddy Award for teamwork and collaboration. Built a Hyperlocal Skill Exchange Platform connecting users with nearby service providers through location-based discovery, bidding, and reputation scoring."
     },
     {
       title: "Overclocked AEC Hackathon",
       award: "Participant & Project Showcase",
-      team: "Bikram Gorai, Baidyanath Mahato, Ayush Maji",
+      team: "Team: Bikram Gorai, Hrithik Burnwal, Baidyanath Mahato, Ayush Maji",
       track: "Campus Tech & Event Systems",
       description: "Collaboratively built and deployed Eventix, a centralized event management platform designed to unify college clubs, societies, and attendance workflows under one system."
     }
