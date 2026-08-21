@@ -6,46 +6,71 @@
 /* --------------------------------------------------------------------------
    Buttons & Links
    -------------------------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Buttons & Links with Minimal Theme Gradients
+   -------------------------------------------------------------------------- */
 .btn-primary {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  background-color: var(--text-primary);
-  color: var(--text-inverse);
-  padding: 0.85rem 1.6rem;
+  justify-content: center;
+  gap: 0.55rem;
+  background: linear-gradient(135deg, #2D2D2D 0%, #1A1A1A 100%);
+  color: #FFFFFF;
+  padding: 0.8rem 1.4rem;
   border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.9rem;
-  border: 1px solid var(--text-primary);
+  font-weight: 700;
+  font-size: 0.88rem;
+  border: 1.5px solid #1A1A1A;
+  box-shadow: 3px 3px 0px #1A1A1A;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-rust);
-  border-color: var(--accent-rust);
+  background: linear-gradient(135deg, #C25330 0%, #B24726 100%);
+  border-color: #1A1A1A;
   color: #FFFFFF;
-  transform: translateY(-2px);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #1A1A1A;
 }
 
 .btn-secondary {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  background-color: transparent;
-  color: var(--text-primary);
-  padding: 0.85rem 1.6rem;
+  justify-content: center;
+  gap: 0.55rem;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F5F2EB 100%);
+  color: #1A1A1A;
+  padding: 0.8rem 1.4rem;
   border-radius: var(--radius-sm);
-  font-weight: 600;
-  font-size: 0.9rem;
-  border: 1px solid var(--border-medium);
+  font-weight: 700;
+  font-size: 0.88rem;
+  border: 1.5px solid #1A1A1A;
+  box-shadow: 3px 3px 0px #1A1A1A;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  white-space: nowrap;
+  text-decoration: none;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
 }
 
 .btn-secondary:hover {
-  border-color: var(--text-primary);
-  background-color: var(--bg-card);
+  background: linear-gradient(135deg, #F8ECE7 0%, #F2DDD5 100%);
+  border-color: #1A1A1A;
+  color: #B24726;
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #1A1A1A;
+}
+
+.btn-sm {
+  padding: 0.55rem 1rem;
+  font-size: 0.8rem;
+  box-shadow: 2.5px 2.5px 0px #1A1A1A;
+}
+
+.btn-sm:hover {
+  box-shadow: 4px 4px 0px #1A1A1A;
 }
 
 .link-arrow {
@@ -55,6 +80,7 @@
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--text-primary);
+  text-decoration: none;
 }
 
 .link-arrow::after {
@@ -127,19 +153,22 @@
 }
 
 /* --------------------------------------------------------------------------
-   Neo-Brutalist Highlight Badges & Accent Boxes
+   Neo-Brutalist Highlight Badges & Accent Boxes (Fixed Inline Wrapping)
    -------------------------------------------------------------------------- */
 mark.neo-highlight, span.neo-highlight {
   background-color: #F3C649;  /* Soft Warm Mustard Yellow */
   color: #1A1A1A;
-  padding: 0.12rem 0.45rem;
+  padding: 0.1rem 0.4rem;
   border-radius: 4px;
-  border: 1.5px solid #1A1A1A;
+  border: 1.25px solid #1A1A1A;
   box-shadow: 2px 2px 0px #1A1A1A;
   font-style: normal;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  vertical-align: middle;
   line-height: 1.25;
-  transform: rotate(-1deg);
+  transform: rotate(-0.8deg);
   transition: transform var(--transition-fast);
 }
 
@@ -150,14 +179,17 @@ mark.neo-highlight:hover, span.neo-highlight:hover {
 mark.neo-highlight-rust, span.neo-highlight-rust {
   background-color: #B24726;  /* Warm Terracotta Rust */
   color: #FFFFFF;
-  padding: 0.12rem 0.45rem;
+  padding: 0.1rem 0.4rem;
   border-radius: 4px;
-  border: 1.5px solid #1A1A1A;
+  border: 1.25px solid #1A1A1A;
   box-shadow: 2px 2px 0px #1A1A1A;
   font-style: normal;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  vertical-align: middle;
   line-height: 1.25;
-  transform: rotate(1.2deg);
+  transform: rotate(0.8deg);
   transition: transform var(--transition-fast);
 }
 
@@ -168,14 +200,17 @@ mark.neo-highlight-rust:hover, span.neo-highlight-rust:hover {
 mark.neo-highlight-coral, span.neo-highlight-coral {
   background-color: #E89874;  /* Muted Warm Coral */
   color: #1A1A1A;
-  padding: 0.12rem 0.45rem;
+  padding: 0.1rem 0.4rem;
   border-radius: 4px;
-  border: 1.5px solid #1A1A1A;
+  border: 1.25px solid #1A1A1A;
   box-shadow: 2px 2px 0px #1A1A1A;
   font-style: normal;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  vertical-align: middle;
   line-height: 1.25;
-  transform: rotate(-0.8deg);
+  transform: rotate(-0.6deg);
   transition: transform var(--transition-fast);
 }
 
