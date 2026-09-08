@@ -90,6 +90,19 @@ document.addEventListener('DOMContentLoaded', () => {
       ease: "power3.out"
     });
 
+    // Systems Perspective Vulnerability Cards
+    gsap.from(".vulnerability-card", {
+      scrollTrigger: {
+        trigger: ".vulnerability-grid",
+        start: "top 85%"
+      },
+      y: 35,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.12,
+      ease: "power2.out"
+    });
+
     // Editorial Philosophy Quote
     gsap.from(".editorial-quote", {
       scrollTrigger: {

@@ -236,6 +236,40 @@ mark.neo-highlight-coral, span.neo-highlight-coral {
   transition: background-color var(--transition-fast);
 }
 
+mark.neo-highlight-green, span.neo-highlight-green {
+  background-color: #D4EDDA;  /* Fresh Soft Green */
+  color: #155724;
+  padding: 0.15em 0.45em;
+  margin: 0 0.1em;
+  border-radius: 4px;
+  border: 1.25px solid #1A1A1A;
+  box-shadow: 2px 2px 0px #1A1A1A;
+  font-style: normal;
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: 1.4;
+  vertical-align: baseline;
+  transition: background-color var(--transition-fast);
+}
+
+mark.neo-highlight-mint, span.neo-highlight-mint {
+  background-color: #A3E4D7;  /* Soft Emerald Mint */
+  color: #0E6251;
+  padding: 0.15em 0.45em;
+  margin: 0 0.1em;
+  border-radius: 4px;
+  border: 1.25px solid #1A1A1A;
+  box-shadow: 2px 2px 0px #1A1A1A;
+  font-style: normal;
+  display: inline;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  line-height: 1.4;
+  vertical-align: baseline;
+  transition: background-color var(--transition-fast);
+}
+
 /* --------------------------------------------------------------------------
    DSA Streak & Brewing Calendar Widget (Rotation Card)
    -------------------------------------------------------------------------- */
@@ -562,3 +596,507 @@ mark.neo-highlight-coral, span.neo-highlight-coral {
   text-transform: uppercase;
   font-weight: 600;
 }
+
+/* ==========================================================================
+   SYSTEMS PERSPECTIVE / BACKEND STORY COMPONENTS
+   Floating Glassmorphism Expander, Vulnerability Cards & Architecture Diagrams
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Floating Glassmorphism "Read More" Button
+   -------------------------------------------------------------------------- */
+.perspective-btn-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  z-index: 25;
+  transition: all var(--transition-normal);
+}
+
+.perspective-wrap.expanded .perspective-btn-bar {
+  position: relative;
+  bottom: auto;
+  margin-top: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.btn-glass-expand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: #1A1A1A;
+  padding: 0.95rem 2.2rem;
+  border-radius: var(--radius-pill);
+  font-weight: 800;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+  border: 1.75px solid #1A1A1A;
+  box-shadow: 4px 4px 0px #1A1A1A;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+}
+
+.btn-glass-expand::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 100%);
+  border-radius: var(--radius-pill) var(--radius-pill) 0 0;
+  pointer-events: none;
+}
+
+.btn-glass-expand:hover {
+  background: rgba(255, 255, 255, 0.96);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px #1A1A1A;
+  color: var(--accent-rust);
+}
+
+.btn-glass-expand .expand-icon {
+  font-size: 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.perspective-wrap.expanded .btn-glass-expand .expand-icon {
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   Perspective Fade Mask (Soft Dissolve for Collapsed Preview)
+   -------------------------------------------------------------------------- */
+.perspective-fade-mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 240px;
+  background: linear-gradient(to bottom, rgba(245, 242, 235, 0) 0%, rgba(245, 242, 235, 0.8) 50%, #F5F2EB 95%);
+  pointer-events: none;
+  z-index: 15;
+  transition: opacity 0.4s ease;
+}
+
+.perspective-wrap.expanded .perspective-fade-mask {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Dynamic Asymmetrical Story Nodes & Irregular Geometries
+   (Circles, Diamonds, Angled Capsules, Glassmorphic Floating Badges, SVG Arrows)
+   -------------------------------------------------------------------------- */
+.story-timeline-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  margin-top: 3rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+/* Alternating Story Rows */
+.story-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+}
+
+.story-row.reverse {
+  direction: rtl;
+}
+
+.story-row.reverse > * {
+  direction: ltr;
+}
+
+/* Organic Asymmetric Containers */
+.story-content-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Neutral Tags & Grayish Editorial Highlights */
+.tag-neutral {
+  background-color: #EAE6DF;
+  color: #1A1A1A;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #D5D1C7;
+  font-style: normal;
+  font-weight: 700;
+  display: inline;
+}
+
+.tag-mono-neutral {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  background-color: #E8E5DF;
+  color: #2D2B28;
+  border: 1px solid #D6D2C8;
+  padding: 0.18rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  display: inline-block;
+  white-space: nowrap;
+  margin: 0.15rem 0.1rem;
+  line-height: 1.35;
+  box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.08);
+}
+
+.tag-neutral-quote {
+  background-color: #EAE6DF;
+  color: #1A1A1A;
+  font-weight: 600;
+  font-style: italic;
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+  border-left: 3px solid #1A1A1A;
+  border-top: 1px solid #D6D2C8;
+  border-right: 1px solid #D6D2C8;
+  border-bottom: 1px solid #D6D2C8;
+  display: inline-block;
+  margin-top: 0.25rem;
+}
+
+.story-badge-pill {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid #1A1A1A;
+  box-shadow: 2px 2px 0px #1A1A1A;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+}
+
+.story-badge-pill.neutral {
+  background-color: #EAE6DF;
+  color: #2B2A27;
+  border-color: #1A1A1A;
+  box-shadow: 2px 2px 0px #1A1A1A;
+}
+
+.story-badge-pill.mustard {
+  background-color: #F3C649;
+  color: #1A1A1A;
+}
+
+.story-badge-pill.rust {
+  background-color: #F8ECE7;
+  color: #B24726;
+  border-color: #B24726;
+  box-shadow: 2px 2px 0px #B24726;
+}
+
+.story-badge-pill.dark {
+  background-color: #1A1A1A;
+  color: #FFFFFF;
+}
+
+.story-badge-pill.green {
+  background-color: #E8F8F5;
+  color: #117A65;
+  border-color: #117A65;
+  box-shadow: 2px 2px 0px #117A65;
+}
+
+/* Perspective Rectangular Callout Card (Clean, Unclipped & Neutral) */
+.perspective-callout-card {
+  background: #FFFFFF;
+  border: 2px solid #1A1A1A;
+  border-radius: 8px;
+  box-shadow: 5px 5px 0px #1A1A1A;
+  padding: 1.75rem 2rem;
+  max-width: 440px;
+  width: 100%;
+  position: relative;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.perspective-callout-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 7px 7px 0px #1A1A1A;
+}
+
+.perspective-callout-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--accent-rust);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.perspective-callout-quote {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-style: italic;
+  color: #1A1A1A;
+  line-height: 1.6;
+  margin-bottom: 0.85rem;
+}
+
+.perspective-quote-chip {
+  display: inline-block;
+  background-color: #FDF0EB;
+  color: var(--accent-rust);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-style: normal;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  border: 1.25px solid var(--accent-rust);
+  box-shadow: 2px 2px 0px var(--accent-rust);
+  margin: 0.2rem 0;
+  line-height: 1.35;
+}
+
+.perspective-callout-footnote {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  border-top: 1px dashed #D6D2C8;
+  padding-top: 0.65rem;
+}
+
+/* Geometric Interactive Shape Nodes */
+.story-diagram-side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* 1. Circular Glassmorphic Pulse Node */
+.shape-glass-circle {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 2px solid #1A1A1A;
+  box-shadow: 6px 6px 0px #1A1A1A;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.5rem;
+  transform: rotate(-2deg);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.shape-glass-circle:hover {
+  transform: rotate(0deg) scale(1.03);
+  box-shadow: 8px 8px 0px #1A1A1A;
+}
+
+/* 2. Angled Geometric Diamond/Parallelogram */
+.shape-angled-polygon {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  border: 2px solid #1A1A1A;
+  border-radius: 32px 6px 32px 6px;
+  box-shadow: 5px 5px 0px #1A1A1A;
+  padding: 1.75rem 2rem;
+  transform: rotate(1.5deg);
+  max-width: 440px;
+  width: 100%;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.shape-angled-polygon:hover {
+  transform: rotate(0deg) translate(-2px, -2px);
+  box-shadow: 7px 7px 0px #1A1A1A;
+}
+
+/* 3. Asymmetrical Capsule Pill Node */
+.shape-asym-capsule {
+  background: #FFFFFF;
+  border: 2px solid #1A1A1A;
+  border-radius: 50px 12px 50px 12px;
+  box-shadow: 5px 5px 0px #1A1A1A;
+  padding: 1.75rem 2.25rem;
+  max-width: 460px;
+  width: 100%;
+  transform: rotate(-1deg);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.shape-asym-capsule:hover {
+  transform: rotate(0deg) translate(-2px, -2px);
+  box-shadow: 7px 7px 0px #1A1A1A;
+}
+
+/* Micro Comparison Flows inside Shapes */
+.micro-flow-flaw {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #C0392B;
+  background-color: #FDF2E9;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  border-left: 3px solid #C0392B;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.micro-flow-fix {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #16A085;
+  background-color: #E8F8F5;
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  border-left: 3px solid #16A085;
+  font-weight: 700;
+  display: block;
+}
+
+/* Hand-Drawn SVG Curved Arrow Connectors */
+.story-arrow-connector {
+  position: absolute;
+  width: 90px;
+  height: 60px;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.arrow-left-to-right {
+  top: -30px;
+  right: -45px;
+}
+
+.arrow-right-to-left {
+  top: -30px;
+  left: -45px;
+}
+
+/* --------------------------------------------------------------------------
+   Artistic Editorial Philosophy Stamp (Replaces Generic Box Banner)
+   -------------------------------------------------------------------------- */
+.story-stamp-conclusion {
+  margin-top: 4rem;
+  padding: 2.5rem 0 1rem 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.story-rubber-stamp {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #B24726;
+  border: 2px dashed #B24726;
+  padding: 0.45rem 1.4rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transform: rotate(-2.5deg);
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  background-color: rgba(178, 71, 38, 0.04);
+}
+
+.story-conclusion-headline {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  line-height: 1.15;
+  font-style: italic;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  max-width: 820px;
+}
+
+.story-contrast-pill-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  max-width: 860px;
+}
+
+.story-contrast-pill {
+  padding: 0.9rem 1.6rem;
+  border-radius: var(--radius-pill);
+  border: 1.75px solid #1A1A1A;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 3.5px 3.5px 0px #1A1A1A;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.story-contrast-pill:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0px #1A1A1A;
+}
+
+.story-contrast-pill.surface {
+  background-color: #FFFFFF;
+  color: var(--text-primary);
+}
+
+.story-contrast-pill.deep {
+  background: linear-gradient(135deg, #E8F8F5 0%, #D4EDDA 100%);
+  color: #145A32;
+  border-color: #1A1A1A;
+}
+
+@media (max-width: 860px) {
+  .story-row,
+  .story-row.reverse {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    direction: ltr;
+  }
+  
+  .shape-glass-circle {
+    width: 200px;
+    height: 200px;
+    padding: 1rem;
+  }
+  
+  .story-arrow-connector {
+    display: none;
+  }
+}
+

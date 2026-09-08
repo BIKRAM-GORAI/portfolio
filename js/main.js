@@ -4,6 +4,11 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Initialize Lucide Icons Pack
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+
   // 1. Marquee Content Duplication for Infinite Seamless Loop
   const marqueeContent = document.getElementById('marquee-content-track');
   if (marqueeContent) {
@@ -49,6 +54,50 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // 4. Systems Perspective "Behind The Interface" Floating Glassmorphism Expander
+  const perspectiveWrap = document.getElementById('perspective-interactive-wrap');
+  const perspectiveBtn = document.getElementById('perspective-expand-btn');
+  const perspectiveBtnText = document.getElementById('perspective-btn-text');
+  const perspectiveBtnIcon = document.getElementById('perspective-btn-icon');
+
+  if (perspectiveWrap && perspectiveBtn) {
+    perspectiveBtn.addEventListener('click', () => {
+      const isExpanded = perspectiveWrap.classList.toggle('expanded');
+      perspectiveBtn.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+
+      if (isExpanded) {
+        if (perspectiveBtnText) perspectiveBtnText.textContent = 'Close Breakdown';
+        if (perspectiveBtnIcon) perspectiveBtnIcon.innerHTML = '<i data-lucide="chevron-up" style="width: 16px; height: 16px; stroke-width: 2.5;"></i>';
+      } else {
+        if (perspectiveBtnText) perspectiveBtnText.textContent = 'Behind The Interface';
+        if (perspectiveBtnIcon) perspectiveBtnIcon.innerHTML = '<i data-lucide="chevron-down" style="width: 16px; height: 16px; stroke-width: 2.5;"></i>';
+
+        // When collapsing, smoothly scroll back to the perspective section header
+        const perspectiveSection = document.getElementById('perspective');
+        if (perspectiveSection) {
+          const headerOffset = 80;
+          const elementPosition = perspectiveSection.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }
+
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+
+      // Notify window resize & ScrollTrigger so Mjolnir rope widget & GSAP recalc page bounds
+      window.dispatchEvent(new Event('resize'));
+      window.dispatchEvent(new Event('scroll'));
+      if (typeof ScrollTrigger !== 'undefined') {
+        setTimeout(() => ScrollTrigger.refresh(), 350);
+      }
+    });
+  }
 });
 
 /* ==========================================================================

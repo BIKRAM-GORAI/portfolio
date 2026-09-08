@@ -95,6 +95,8 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/animations.css">
+  <!-- Lucide Icon Pack (Local Vendor) -->
+  <script src="js/lucide.min.js"></script>
 </head>
 <body>
 
@@ -112,6 +114,7 @@
         <ul class="nav-menu">
           <li><a href="#hero" class="nav-link active">Home</a></li>
           <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#perspective" class="nav-link">Perspective</a></li>
           <li><a href="#philosophy" class="nav-link">Philosophy</a></li>
           <li><a href="#skills" class="nav-link">Skills</a></li>
           <li><a href="#education" class="nav-link">Academics</a></li>
@@ -128,7 +131,10 @@
           </svg>
         </button>
 
-        <a href="assets/images/Resume.pdf" target="_blank" rel="noopener" class="btn-primary" style="padding: 0.5rem 0.95rem; font-size: 0.8rem;">Resume 📄</a>
+        <a href="assets/images/Resume.pdf" target="_blank" rel="noopener" class="btn-primary" style="padding: 0.5rem 0.95rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.45rem;">
+          <i data-lucide="file-text" style="width: 14px; height: 14px; stroke-width: 2.2;"></i>
+          <span>Resume</span>
+        </a>
       </div>
     </div>
   </header>
@@ -153,7 +159,10 @@
 
           <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
             <a href="#contact" class="btn-primary">Get in touch →</a>
-            <a href="assets/images/Resume.pdf" target="_blank" rel="noopener" class="btn-primary btn-rust">View Resume 📄</a>
+            <a href="assets/images/Resume.pdf" target="_blank" rel="noopener" class="btn-primary btn-rust" style="display: inline-flex; align-items: center; gap: 0.45rem;">
+              <i data-lucide="file-text" style="width: 15px; height: 15px; stroke-width: 2.2;"></i>
+              <span>View Resume</span>
+            </a>
             <a href="https://github.com/BIKRAM-GORAI" target="_blank" rel="noopener" class="btn-secondary">GitHub Profile ↗</a>
           </div>
 
@@ -371,11 +380,241 @@
   </section>
 
   <!-- ==========================================================================
-       03 / ENGINEERING PHILOSOPHY & EDITORIAL QUOTE
+       03 / SYSTEMS PERSPECTIVE & ADVERSARIAL BACKEND STORY
+       ========================================================================= -->
+  <section id="perspective" class="perspective-section reveal-on-scroll">
+    <div class="container">
+      <div class="section-tag">03 / SYSTEMS PERSPECTIVE</div>
+      <h2 class="section-headline">From the Eyes of a Backend Developer</h2>
+
+      <div class="perspective-wrap" id="perspective-interactive-wrap">
+        <div class="perspective-preview-wrap" id="perspective-preview-container">
+          
+          <!-- PART 1: The Asymmetric Hook (Always Visible) -->
+          <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 2.5rem; align-items: center; margin-bottom: 2rem;">
+            <div>
+              <span class="story-badge-pill mustard">PERSPECTIVE</span>
+              <h3 class="perspective-subheading" style="margin: 0.85rem 0; font-size: clamp(2rem, 3.5vw, 2.6rem); line-height: 1.15;">
+                The interface is only the <mark class="neo-highlight">surface</mark>.
+              </h3>
+              <p style="font-size: 1.12rem; line-height: 1.7; color: var(--text-primary); margin-bottom: 1rem;">
+                When users see buttons, pages, and animations, I see what sits underneath: <code class="tag-mono-neutral">network requests</code>, <code class="tag-mono-neutral">permission gates</code>, <code class="tag-mono-neutral">state mutations</code>, and <code class="tag-mono-neutral">concurrency assumptions</code>.
+              </p>
+              <p style="font-size: 1.05rem; line-height: 1.6; color: var(--text-secondary);">
+                The frontend might display a polite confirmation. <span class="tag-neutral-quote">The client can simply send whatever it wants.</span>
+              </p>
+            </div>
+
+            <!-- Right-hand clean callout box (Unclipped & Neutral) -->
+            <div style="display: flex; justify-content: flex-end;">
+              <div class="perspective-callout-card">
+                <div class="perspective-callout-tag">
+                  <i data-lucide="sparkles" style="width: 13px; height: 13px; stroke-width: 2.5;"></i>
+                  <span>THE ADVERSARIAL TURNING POINT</span>
+                </div>
+                <div class="perspective-callout-quote">
+                  “I built Consistency Daily to work. Then I asked:
+                  <span class="perspective-quote-chip">What happens if someone tries to make it fail?</span>”
+                </div>
+                <div class="perspective-callout-footnote">
+                  Happy path is only one path. Production systems don't get to pick their users.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PART 2: The Interactive Story Flow (Alternating Left ➔ Right with Arrows & Geometric Shapes) -->
+          <div class="perspective-expanded-content" id="perspective-story-deepdive">
+            
+            <div style="margin-top: 3.5rem; text-align: center; position: relative;">
+              <span class="story-rubber-stamp">ATTACKING MY OWN SYSTEM</span>
+              <h3 style="font-size: 2.2rem; font-weight: 800; margin-top: 0.5rem; letter-spacing: -0.02em;">
+                “If I were trying to <mark class="neo-highlight-coral">abuse this endpoint</mark>, what would I try?”
+              </h3>
+              <p style="font-size: 1.05rem; color: var(--text-secondary); max-width: 680px; margin: 0.5rem auto 2.5rem auto;">
+                Functional testing only proves the happy path. Thinking like an adversary uncovered real production vulnerabilities:
+              </p>
+            </div>
+
+            <div class="story-timeline-flow">
+
+              <!-- STORY STEP 1: Left Content ➔ Curved Arrow ➔ Right Circular Glass Node -->
+              <div class="story-row">
+                <div class="story-content-side">
+                  <div class="story-badge-pill rust">
+                    <span>01</span> CONCURRENCY &amp; RACE CONDITIONS
+                  </div>
+                  <h4 style="font-size: 1.5rem; font-weight: 800; line-height: 1.25;">
+                    Two simultaneous taps shouldn't <mark class="neo-highlight-rust">double-spend</mark>.
+                  </h4>
+                  <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+                    A points balance was read in memory, validated, and then decremented. Under concurrent async requests, two incoming packets read the same original balance simultaneously—both passed, double-spending points.
+                  </p>
+                  <p style="font-size: 0.88rem; font-family: var(--font-mono); color: var(--accent-rust); font-weight: 600;">
+                    Fix wasn't frontend throttling. It was making the database query itself an atomic state transition.
+                  </p>
+                </div>
+
+                <div class="story-diagram-side">
+                  <!-- Curved connector arrow pointing from left to right -->
+                  <svg class="story-arrow-connector arrow-left-to-right" viewBox="0 0 90 60">
+                    <path d="M 5 45 Q 45 5 80 25" fill="none" stroke="#B24726" stroke-width="2" stroke-dasharray="5 3"/>
+                    <polygon points="85,25 77,20 78,29" fill="#B24726"/>
+                  </svg>
+
+                  <!-- Geometric Shape 1: Circular Frosted Glass Node -->
+                  <div class="shape-glass-circle">
+                    <div style="font-family: var(--font-mono); font-size: 0.7rem; font-weight: 800; color: var(--accent-rust); text-transform: uppercase; margin-bottom: 0.4rem;">
+                      ATOMIC TRANSITION
+                    </div>
+                    <span class="micro-flow-flaw" style="font-size: 0.72rem; margin-bottom: 0.4rem; display: flex; align-items: flex-start; gap: 0.35rem; text-align: left;">
+                      <i data-lucide="circle-x" style="width: 13px; height: 13px; stroke-width: 2.5; flex-shrink: 0; margin-top: 2px;"></i>
+                      <span>find() then save()<br>Double-spend risk</span>
+                    </span>
+                    <span class="micro-flow-fix" style="font-size: 0.72rem; display: flex; align-items: flex-start; gap: 0.35rem; text-align: left;">
+                      <i data-lucide="circle-check-big" style="width: 13px; height: 13px; stroke-width: 2.5; flex-shrink: 0; margin-top: 2px;"></i>
+                      <span>$inc with $gte<br>Zero underflow</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STORY STEP 2: Right Content ➔ Curved Arrow ➔ Left Angled Polygon Node (Reverse Row) -->
+              <div class="story-row reverse">
+                <div class="story-content-side">
+                  <div class="story-badge-pill mustard">
+                    <span>02</span> CRYPTOGRAPHY &amp; TIMING ATTACKS
+                  </div>
+                  <h4 style="font-size: 1.5rem; font-weight: 800; line-height: 1.25;">
+                    Secrets shouldn't leak through <mark class="neo-highlight">nanoseconds</mark>.
+                  </h4>
+                  <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+                    Standard JavaScript string equality (<code style="font-family: var(--font-mono); background: #eee; padding: 0.1rem 0.3rem;">===</code>) short-circuits on the very first mismatched byte. An attacker measuring response times over thousands of attempts can leak secret characters byte-by-byte.
+                  </p>
+                  <p style="font-size: 0.88rem; font-family: var(--font-mono); color: #1A1A1A; font-weight: 600;">
+                    Replaced with hash normalization + constant-time byte-level comparison.
+                  </p>
+                </div>
+
+                <div class="story-diagram-side">
+                  <!-- Curved connector arrow pointing from right to left -->
+                  <svg class="story-arrow-connector arrow-right-to-left" viewBox="0 0 90 60">
+                    <path d="M 85 45 Q 45 5 10 25" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-dasharray="5 3"/>
+                    <polygon points="5,25 12,20 12,29" fill="#1A1A1A"/>
+                  </svg>
+
+                  <!-- Geometric Shape 2: Angled Diamond Box -->
+                  <div class="shape-angled-polygon" style="padding: 1.5rem;">
+                    <div style="font-family: var(--font-mono); font-size: 0.7rem; font-weight: 800; color: #1A1A1A; text-transform: uppercase; margin-bottom: 0.5rem;">
+                      CONSTANT-TIME VERIFY
+                    </div>
+                    <span class="micro-flow-flaw" style="display: flex; align-items: center; gap: 0.4rem;">
+                      <i data-lucide="circle-x" style="width: 13px; height: 13px; stroke-width: 2.5; flex-shrink: 0;"></i>
+                      <span>token === secret (early return leaks byte timing)</span>
+                    </span>
+                    <span class="micro-flow-fix" style="display: flex; align-items: center; gap: 0.4rem;">
+                      <i data-lucide="circle-check-big" style="width: 13px; height: 13px; stroke-width: 2.5; flex-shrink: 0;"></i>
+                      <span>crypto.timingSafeEqual(sha256(A), sha256(B))</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- STORY STEP 3: Left Content ➔ Curved Arrow ➔ Right Capsule Node -->
+              <div class="story-row">
+                <div class="story-content-side">
+                  <div class="story-badge-pill green">
+                    <span>03</span> SCALING &amp; RESILIENCE
+                  </div>
+                  <h4 style="font-size: 1.5rem; font-weight: 800; line-height: 1.25;">
+                    N+1 query cascades &amp; <mark class="neo-highlight-green">unbounded memory</mark>.
+                  </h4>
+                  <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6;">
+                    Checking habit streaks in an iterative loop meant <strong>N users = N+1 DB queries</strong>. Meanwhile, an uncapped in-memory map leaked heap space over time. Both worked fine in local dev, but would choke under sustained production traffic.
+                  </p>
+                  <p style="font-size: 0.88rem; font-family: var(--font-mono); color: #16A085; font-weight: 600;">
+                    Batched $in aggregation pipeline (N users ➔ 1 query) + LRU cache with strict 15m TTL.
+                  </p>
+                </div>
+
+                <div class="story-diagram-side">
+                  <!-- Curved connector arrow pointing from left to right -->
+                  <svg class="story-arrow-connector arrow-left-to-right" viewBox="0 0 90 60">
+                    <path d="M 5 45 Q 45 5 80 25" fill="none" stroke="#16A085" stroke-width="2" stroke-dasharray="5 3"/>
+                    <polygon points="85,25 77,20 78,29" fill="#16A085"/>
+                  </svg>
+
+                  <!-- Geometric Shape 3: Asymmetrical Rounded Capsule -->
+                  <div class="shape-asym-capsule" style="padding: 1.4rem 1.75rem;">
+                    <div style="font-family: var(--font-mono); font-size: 0.7rem; font-weight: 800; color: #16A085; text-transform: uppercase; margin-bottom: 0.5rem;">
+                      BATCHED &amp; BOUNDED
+                    </div>
+                    <span class="micro-flow-flaw" style="display: flex; align-items: center; gap: 0.4rem;">
+                      <i data-lucide="circle-x" style="width: 13px; height: 13px; stroke-width: 2.5; flex-shrink: 0;"></i>
+                      <span>N users ➔ N+1 database network roundtrips</span>
+                    </span>
+                    <span class="micro-flow-fix" style="display: flex; align-items: center; gap: 0.4rem;">
+                      <i data-lucide="circle-check-big" style="width: 13px; height: 13px; stroke-width: 2.5; flex-shrink: 0;"></i>
+                      <span>Batched $in query: N users ➔ 1 single roundtrip</span>
+                    </span>
+                    <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted); margin-top: 0.5rem;">
+                      + LRU cache cap (1,000 max) to prevent heap exhaustion
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- PART 3: The Authentic Editorial Conclusion (NO GENERIC AI-SLOP BOX) -->
+            <div class="story-stamp-conclusion">
+              <span class="story-rubber-stamp">ENGINEERING MANIFESTO</span>
+              <h3 class="story-conclusion-headline">
+                “Build it. Then try to break it.”
+              </h3>
+              <p style="font-size: 1.05rem; color: var(--text-secondary); max-width: 640px; line-height: 1.6; margin-bottom: 2rem;">
+                That is the distinction between surface-level coding and production backend engineering.
+              </p>
+              
+              <div class="story-contrast-pill-row">
+                <div class="story-contrast-pill surface">
+                  <i data-lucide="monitor" style="width: 18px; height: 18px; stroke-width: 2; color: #1A1A1A;"></i>
+                  <span><strong>The UI</strong> shows what the system does</span>
+                </div>
+                <div style="font-size: 1.5rem; color: var(--accent-rust); display: flex; align-items: center;">
+                  <i data-lucide="arrow-right" style="width: 20px; height: 20px; stroke-width: 2.5;"></i>
+                </div>
+                <div class="story-contrast-pill deep">
+                  <i data-lucide="shield-check" style="width: 18px; height: 18px; stroke-width: 2; color: #145A32;"></i>
+                  <span><strong>The Backend</strong> proves it cannot fail under pressure</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Floating Glassmorphism Read More Expander Button & Gradient Fade Mask -->
+        <div class="perspective-fade-mask" id="perspective-fade-mask"></div>
+        
+        <div class="perspective-btn-bar" id="perspective-btn-bar">
+          <button type="button" class="btn-glass-expand" id="perspective-expand-btn" aria-expanded="false" title="Click to inspect the backend systems breakdown">
+            <i data-lucide="layers" style="width: 16px; height: 16px; stroke-width: 2.2;"></i>
+            <span class="expand-text" id="perspective-btn-text">Behind The Interface</span>
+            <span class="expand-icon" id="perspective-btn-icon"><i data-lucide="chevron-down" style="width: 16px; height: 16px; stroke-width: 2.5;"></i></span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       04 / ENGINEERING PHILOSOPHY & EDITORIAL QUOTE
        ========================================================================== -->
   <section id="philosophy" class="philosophy-section reveal-on-scroll">
     <div class="container">
-      <div class="section-tag" style="margin-bottom: 1.5rem;">03 / PHILOSOPHY &amp; APPROACH</div>
+      <div class="section-tag" style="margin-bottom: 1.5rem;">04 / PHILOSOPHY &amp; APPROACH</div>
 
       <div class="philosophy-grid">
         <div class="philosophy-media">
@@ -404,11 +643,11 @@
   </section>
 
   <!-- ==========================================================================
-       04 / HACKATHONS & COMPETITIONS
+       05 / HACKATHONS & COMPETITIONS
        ========================================================================== -->
   <section id="hackathons" class="hackathon-section reveal-on-scroll">
     <div class="container">
-      <div class="section-tag">04 / LAB &amp; HACKATHONS</div>
+      <div class="section-tag">05 / LAB &amp; HACKATHONS</div>
       <h2 class="section-headline">Building under time constraints.</h2>
 
       <div class="hackathon-grid">
@@ -421,7 +660,10 @@
             </div>
             
             <div style="margin-bottom: 1.25rem; display: flex; gap: 0.6rem; flex-wrap: wrap; align-items: center;">
-              <mark class="neo-highlight" style="font-size: 1.1rem; font-weight: 900; padding: 0.35rem 0.85rem;">🏆 3rd Place Award</mark>
+              <mark class="neo-highlight" style="font-size: 1.1rem; font-weight: 900; padding: 0.35rem 0.85rem; display: inline-flex; align-items: center; gap: 0.45rem;">
+                <i data-lucide="trophy" style="width: 17px; height: 17px; stroke-width: 2.2;"></i>
+                <span>3rd Place Award</span>
+              </mark>
               <mark class="neo-highlight-rust" style="font-size: 1.1rem; font-weight: 900; padding: 0.35rem 0.85rem;">Best Buddy Award</mark>
               <mark class="neo-highlight-coral" style="font-size: 1.1rem; font-weight: 900; padding: 0.35rem 0.85rem;">36-Hour Non-Stop Hackathon</mark>
             </div>
@@ -463,14 +705,14 @@
   </section>
 
   <!-- ==========================================================================
-       05 / SKILLS & TECHNOLOGY STACK
+       06 / SKILLS & TECHNOLOGY STACK
        ========================================================================== -->
   <section id="skills" class="skills-section reveal-on-scroll">
     <div class="section-bg-blur-container">
       <img src="assets/images/photography/bg1.png" alt="Photography Background" class="section-bg-blur-img">
     </div>
     <div class="container">
-      <div class="section-tag">05 / TECHNICAL TOOLKIT</div>
+      <div class="section-tag">06 / TECHNICAL TOOLKIT</div>
       <h2 class="section-headline">Backend architecture, databases &amp; core frameworks</h2>
 
       <div class="skills-grid">
@@ -548,11 +790,11 @@
   </section>
 
   <!-- ==========================================================================
-       06 / ACADEMICS & EDUCATION TIMELINE
+       07 / ACADEMICS & EDUCATION TIMELINE
        ========================================================================== -->
   <section id="education" class="education-section reveal-on-scroll">
     <div class="container">
-      <div class="section-tag">06 / ACADEMIC FOUNDATIONS</div>
+      <div class="section-tag">07 / ACADEMIC FOUNDATIONS</div>
       <h2 class="section-headline">Education &amp; academic milestones</h2>
 
       <div class="timeline-container">
@@ -601,7 +843,7 @@
   </section>
 
   <!-- ==========================================================================
-       07 / CONTACT & INTERACTIVE TERMINAL INTAKE FORM
+       08 / CONTACT & INTERACTIVE TERMINAL INTAKE FORM
        ========================================================================== -->
   <section id="contact" class="contact-section reveal-on-scroll">
     <div class="section-bg-blur-container">
@@ -610,7 +852,7 @@
     <div class="container">
       <div class="contact-grid">
         <div class="contact-left">
-          <div class="section-tag">07 / CONTACT</div>
+          <div class="section-tag">08 / CONTACT</div>
           <h2 class="contact-headline">
             Got an interesting <span>problem?</span><br>
             Let's talk about it.
@@ -623,7 +865,10 @@
           <div class="social-links-list">
             <a href="assets/images/Resume.pdf" target="_blank" rel="noopener" class="social-link-item" style="border-color: var(--accent-rust); background: linear-gradient(135deg, #F8ECE7 0%, #F2DDD5 100%);">
               <span style="font-weight: 700; color: var(--accent-rust);">View / Download Resume (PDF)</span>
-              <span>📄 ↗</span>
+              <span style="display: inline-flex; align-items: center; gap: 0.35rem;">
+                <i data-lucide="file-text" style="width: 15px; height: 15px; stroke-width: 2;"></i>
+                <i data-lucide="arrow-up-right" style="width: 14px; height: 14px; stroke-width: 2;"></i>
+              </span>
             </a>
             <a href="mailto:bikram77620@gmail.com" class="social-link-item">
               <span>Email: bikram77620@gmail.com</span>
@@ -737,8 +982,9 @@
       <div class="palette-input-wrapper">
         <span class="palette-icon">&gt;_</span>
         <input type="text" id="palette-search-input" class="palette-input" placeholder="Search projects, hackathons, skills, or links..." autocomplete="off">
-        <button type="button" class="palette-close-btn" id="palette-close-btn" title="Close Search Modal (Esc)" aria-label="Close search">
-          <span>ESC</span> ✕
+        <button type="button" class="palette-close-btn" id="palette-close-btn" title="Close Search Modal (Esc)" aria-label="Close search" style="display: inline-flex; align-items: center; gap: 0.35rem;">
+          <span>ESC</span>
+          <i data-lucide="x" style="width: 14px; height: 14px; stroke-width: 2.5;"></i>
         </button>
       </div>
       <ul class="palette-results" id="palette-results-list">

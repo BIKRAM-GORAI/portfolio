@@ -462,7 +462,92 @@
 }
 
 /* --------------------------------------------------------------------------
-   03 / Engineering Philosophy & Serif Quote Block
+   03 / Systems Perspective & Adversarial Backend Story
+   -------------------------------------------------------------------------- */
+.perspective-section {
+  padding: 6rem 0;
+  border-bottom: 1px solid var(--border-light);
+  position: relative;
+  overflow: hidden;
+}
+
+.perspective-wrap {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.perspective-preview-wrap {
+  max-height: 380px;
+  overflow: hidden;
+  position: relative;
+  transition: max-height 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (max-width: 900px) {
+  .perspective-preview-wrap {
+    max-height: 640px;
+  }
+}
+
+.perspective-wrap.expanded .perspective-preview-wrap {
+  max-height: 12000px; /* Allow full height expansion smoothly */
+}
+
+.perspective-lead-box {
+  max-width: 920px;
+  margin-bottom: 2rem;
+}
+
+.perspective-lead-text {
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.perspective-lead-text p {
+  margin-bottom: 1.25rem;
+}
+
+.perspective-lead-text strong {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.perspective-highlight-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  font-style: italic;
+  color: var(--accent-rust);
+  line-height: 1.25;
+  margin: 2.25rem 0;
+  padding-left: 1.5rem;
+  border-left: 3.5px solid var(--accent-rust);
+}
+
+.perspective-subheading {
+  font-size: 1.85rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 2.5rem 0 1.25rem 0;
+}
+
+@media (max-width: 900px) {
+  .vulnerability-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .mindset-comparison-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .mindset-banner {
+    padding: 2.25rem 1.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   04 / Engineering Philosophy & Serif Quote Block
    -------------------------------------------------------------------------- */
 .philosophy-section {
   padding: 6rem 0;

@@ -160,6 +160,8 @@ const PORTFOLIO_DATA = {
     { title: "Consistency Daily", category: "Project", url: "https://consistency-daily.vercel.app/" },
     { title: "Eventix Platform", category: "Project", url: "https://eventix-olive.vercel.app/" },
     { title: "Anya Voice AI", category: "Project", url: "https://anya-voice-ai.vercel.app/" },
+    { title: "From the Eyes of a Backend Developer (Story)", category: "Perspective", url: "#perspective" },
+    { title: "Backend Systems Hardening & Audit (Race conditions, AES-256, N+1)", category: "Systems", url: "#perspective" },
     { title: "Technical Toolkit & Skills", category: "Skills", url: "#skills" },
     { title: "Academic Background & Education", category: "Education", url: "#education" },
     { title: "CODE@FROST Hackathon", category: "Achievement", url: "#hackathons" },
