@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .from(".hero-transparent-img", { scale: 0.95, opacity: 0, duration: 0.5 }, 0.1) // Starts instantly at 0.1s!
         .from(".hero-headline", { y: 20, opacity: 0, duration: 0.5 }, 0.15)
         .from(".hero-bio", { y: 15, opacity: 0, duration: 0.4 }, 0.25)
-        .from(".hero-content .btn-primary, .hero-content .btn-secondary", { y: 15, opacity: 0, stagger: 0.08, duration: 0.4 }, 0.35)
+        .from(".hero-content .btn-primary, .hero-content .btn-secondary", { y: 15, opacity: 0, stagger: 0.08, duration: 0.4, clearProps: "transform,opacity" }, 0.35)
         .from(".stat-item", { y: 15, opacity: 0, stagger: 0.06, duration: 0.4 }, 0.45);
 
   // --------------------------------------------------------------------------

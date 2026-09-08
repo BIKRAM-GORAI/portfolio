@@ -93,6 +93,34 @@
   box-shadow: 5px 5px 0px #1A1A1A !important;
 }
 
+/* Active & Click States: Instantly return to resting base without persistent translation */
+.btn-primary:active,
+.btn-secondary:active,
+.btn-rust:active,
+.btn-mustard:active {
+  transform: translate(0px, 0px) !important;
+  box-shadow: 2px 2px 0px #1A1A1A !important;
+}
+
+/* Focus Reset: Ensure returning from external tabs or mouse clicks does not keep button shifted upward */
+.btn-primary:focus:not(:focus-visible),
+.btn-secondary:focus:not(:focus-visible),
+.btn-rust:focus:not(:focus-visible),
+.btn-mustard:focus:not(:focus-visible) {
+  transform: translate(0px, 0px) !important;
+  box-shadow: 3px 3px 0px #1A1A1A !important;
+  outline: none !important;
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-rust:focus-visible,
+.btn-mustard:focus-visible {
+  outline: 2px solid var(--accent-rust) !important;
+  outline-offset: 2px !important;
+  transform: translate(0px, 0px) !important;
+}
+
 .btn-sm {
   padding: 0.55rem 1rem;
   font-size: 0.8rem;

@@ -98,6 +98,29 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 5. Clean Return from External Tabs / PDF Links (Prevent stuck hover/focus translation)
+  document.querySelectorAll('a[target="_blank"]').forEach(link => {
+    link.addEventListener('click', function() {
+      const self = this;
+      self.blur();
+      setTimeout(() => self.blur(), 50);
+    });
+  });
+
+  window.addEventListener('focus', () => {
+    if (document.activeElement && (document.activeElement.tagName === 'A' || document.activeElement.tagName === 'BUTTON')) {
+      document.activeElement.blur();
+    }
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+      if (document.activeElement && (document.activeElement.tagName === 'A' || document.activeElement.tagName === 'BUTTON')) {
+        document.activeElement.blur();
+      }
+    }
+  });
 });
 
 /* ==========================================================================
