@@ -127,13 +127,19 @@
   transform: translate(2px, -2px);
 }
 
-/* Search Icon Button (Compact Magnifying Glass) */
+/* Search Icon Button (Compact Magnifying Glass) & Header Action Buttons */
 .search-icon-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 36px;
   height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  max-width: 36px;
+  max-height: 36px;
+  flex-shrink: 0;
+  box-sizing: border-box;
   background: var(--bg-card);
   border: 1.5px solid var(--text-primary);
   border-radius: var(--radius-sm);
@@ -148,6 +154,60 @@
   box-shadow: 4px 4px 0px var(--text-primary);
   background-color: var(--accent-rust);
   color: #FFFFFF;
+}
+
+.header-resume-btn {
+  padding: 0.5rem 0.95rem;
+  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-shrink: 0;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .header-actions {
+    gap: 0.5rem;
+  }
+
+  .header-resume-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    max-width: 36px !important;
+    max-height: 36px !important;
+    padding: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: var(--radius-sm) !important;
+    box-shadow: 2px 2px 0px var(--text-primary) !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .header-resume-btn span {
+    display: none !important;
+  }
+
+  .header-resume-btn svg,
+  .header-resume-btn i {
+    width: 17px !important;
+    height: 17px !important;
+    margin: 0 !important;
+  }
+
+  .search-icon-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    max-width: 36px !important;
+    max-height: 36px !important;
+    flex-shrink: 0 !important;
+  }
 }
 
 /* Tech Pills & Tag Badges */
