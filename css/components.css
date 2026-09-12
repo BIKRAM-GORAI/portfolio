@@ -1621,6 +1621,14 @@ mark.neo-highlight-mint, span.neo-highlight-mint {
   }
   .github-snake-canvas-area {
     justify-content: flex-start;
+    padding: 0.5rem 0.15rem;
+  }
+  #github-dual-snake-canvas,
+  .github-snake-media {
+    min-width: 852px;
+    width: 852px;
+    max-width: none;
+    margin: 0;
   }
   .github-snake-bottom-bar {
     flex-direction: column;

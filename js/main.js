@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('github-dual-snake-canvas');
   const snakeCard = document.querySelector('.github-snake-card');
   const snakeGraphLink = document.querySelector('.github-snake-graph-link');
+  const snakeViewport = document.getElementById('github-snake-viewport');
   const cellTooltip = document.getElementById('github-cell-tooltip');
 
   if (canvas && snakeCard) {
@@ -193,6 +194,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastStepTime = 0;
     const STEP_INTERVAL = 220; // ms per move step (50% slower, ~4.5 moves/sec)
 
+    function isMobileScreen() {
+      return window.innerWidth <= 768;
+    }
+
     let snakeA = null; // Rust Snake
     let snakeB = null; // Teal Snake
     let roundIndex = 0;
@@ -233,7 +238,33 @@ document.addEventListener('DOMContentLoaded', () => {
       eatenCount = 0;
       isFinished = false;
       render();
+      alignSnakeViewportRight();
     }
+
+    let userHasScrolledViewport = false;
+    if (snakeViewport) {
+      snakeViewport.addEventListener('scroll', () => {
+        userHasScrolledViewport = true;
+      }, { passive: true });
+    }
+
+    // Automatically align scroll viewport to right on mobile so latest contributions are front & center
+    function alignSnakeViewportRight(force = false) {
+      if (snakeViewport && isMobileScreen()) {
+        if (force || !userHasScrolledViewport) {
+          requestAnimationFrame(() => {
+            snakeViewport.scrollLeft = snakeViewport.scrollWidth - snakeViewport.clientWidth;
+          });
+        }
+      }
+    }
+
+    window.addEventListener('resize', () => {
+      if (isMobileScreen()) {
+        alignSnakeViewportRight();
+      }
+      render();
+    });
 
     function scheduleAutoReset() {
       if (resetTimer) clearTimeout(resetTimer);
@@ -365,8 +396,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function render() {
       ctx.clearRect(0, 0, BASE_WIDTH, BASE_HEIGHT);
 
+      // On mobile screens (<= 768px), display the full intact contribution graph without snakes
+      const isMobile = isMobileScreen();
+      const gridToDraw = isMobile ? originalGrid : currentGrid;
+
       // 1. Draw contribution grid cells
-      currentGrid.forEach(cell => {
+      gridToDraw.forEach(cell => {
         const x = OFFSET_X + cell.col * CELL_PITCH;
         const y = OFFSET_Y + cell.row * CELL_PITCH;
         const lvlKey = `c${cell.level}`;
@@ -380,35 +415,38 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.stroke();
       });
 
-      // 2. Draw authentic Platane-style snakes (tapered rounded squares, naturally connected, exactly matching reference image)
-      [snakeA, snakeB].forEach(snake => {
-        if (!snake || snake.body.length === 0) return;
-        const len = snake.body.length;
-        const body = snake.body;
+      // 2. Snake animation ONLY enabled on desktop screens (> 768px)
+      if (!isMobile) {
+        [snakeA, snakeB].forEach(snake => {
+          if (!snake || snake.body.length === 0) return;
+          const len = snake.body.length;
+          const body = snake.body;
 
-        // Draw from tail to head so larger head sits on top
-        for (let i = len - 1; i >= 0; i--) {
-          const seg = body[i];
-          const cx = OFFSET_X + seg.c * CELL_PITCH + CELL_SIZE / 2;
-          const cy = OFFSET_Y + seg.r * CELL_PITCH + CELL_SIZE / 2;
+          // Draw from tail to head so larger head sits on top
+          for (let i = len - 1; i >= 0; i--) {
+            const seg = body[i];
+            const cx = OFFSET_X + seg.c * CELL_PITCH + CELL_SIZE / 2;
+            const cy = OFFSET_Y + seg.r * CELL_PITCH + CELL_SIZE / 2;
 
-          // Exact Platane dimensions: Head 14.4px (rx 4.5) down to Tail 9.9px (rx 3.3)
-          const t = len > 1 ? i / (len - 1) : 0;
-          const size = 14.4 - t * 4.5;
-          const rx = 4.5 - t * 1.2;
+            // Exact Platane dimensions: Head 14.4px (rx 4.5) down to Tail 9.9px (rx 3.3)
+            const t = len > 1 ? i / (len - 1) : 0;
+            const size = 14.4 - t * 4.5;
+            const rx = 4.5 - t * 1.2;
 
-          const x = cx - size / 2;
-          const y = cy - size / 2;
+            const x = cx - size / 2;
+            const y = cy - size / 2;
 
-          drawRoundedRect(x, y, size, size, rx);
-          ctx.fillStyle = snake.color;
-          ctx.fill();
-        }
-      });
+            drawRoundedRect(x, y, size, size, rx);
+            ctx.fillStyle = snake.color;
+            ctx.fill();
+          }
+        });
+      }
     }
 
     function gameLoop(now) {
-      if (isRunning && isVisible && !isFinished) {
+      // Snake simulation engine runs exclusively on desktop screens
+      if (isRunning && isVisible && !isFinished && !isMobileScreen()) {
         if (now - lastStepTime >= STEP_INTERVAL) {
           stepEngine();
           lastStepTime = now;
@@ -459,10 +497,12 @@ document.addEventListener('DOMContentLoaded', () => {
           if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
             isVisible = true;
             isRunning = true;
+            alignSnakeViewportRight();
           } else if (!entry.isIntersecting || entry.intersectionRatio < 0.05) {
             isVisible = false;
             isRunning = false;
             roundIndex = 0;
+            userHasScrolledViewport = false;
             if (resetTimer) {
               clearTimeout(resetTimer);
               resetTimer = null;
@@ -532,6 +572,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Initialize simulation
         initSnakeState();
+        alignSnakeViewportRight(true);
         if (window.lucide) window.lucide.createIcons();
         animFrameId = requestAnimationFrame(gameLoop);
 
