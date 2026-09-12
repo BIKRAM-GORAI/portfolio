@@ -121,6 +121,462 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  // 6. Dual-Snake Competitive GitHub Contribution Simulation Engine
+  const canvas = document.getElementById('github-dual-snake-canvas');
+  const snakeCard = document.querySelector('.github-snake-card');
+  const snakeGraphLink = document.querySelector('.github-snake-graph-link');
+  const cellTooltip = document.getElementById('github-cell-tooltip');
+
+  if (canvas && snakeCard) {
+    const ctx = canvas.getContext('2d');
+    const COLS = 53;
+    const ROWS = 7;
+    const CELL_PITCH = 16;
+    const CELL_SIZE = 12;
+    const CELL_RADIUS = 2.5;
+    const OFFSET_X = 2;
+    const OFFSET_Y = 2;
+    const BASE_WIDTH = COLS * CELL_PITCH + 4; // 852
+    const BASE_HEIGHT = ROWS * CELL_PITCH + 4; // 116
+
+    // High-DPI Retina backing canvas
+    const dpr = window.devicePixelRatio || 2;
+    canvas.width = BASE_WIDTH * dpr;
+    canvas.height = BASE_HEIGHT * dpr;
+    ctx.scale(dpr, dpr);
+
+    // Color tokens matching portfolio neo-brutalist theme
+    const COLORS = {
+      c0: '#EBE5D9', // Empty / digested background
+      c1: '#F6C4B0', // Level 1
+      c2: '#E68A6B', // Level 2
+      c3: '#B24726', // Level 3 (brand rust)
+      c4: '#6D250E', // Level 4 (dark espresso)
+      border: 'rgba(26, 26, 26, 0.14)',
+      rustHead: '#B24726',
+      rustBody: '#D96B43',
+      tealHead: '#2A9D8F',
+      tealBody: '#52B788'
+    };
+
+    // Exact commit counts store (bundled snapshot + live API sync)
+    let commitCountMap = Object.assign({}, (window.PORTFOLIO_DATA && window.PORTFOLIO_DATA.githubCommitCounts) || {});
+
+    // Compute accurate calendar date and ISO date string for any (col, row) in the 53-week grid
+    function getCellDateInfo(col, row) {
+      const now = new Date();
+      const currentSunday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - now.getDay());
+      const cellDate = new Date(currentSunday.getTime() + ((col - 52) * 7 + row) * 86400000);
+      const year = cellDate.getFullYear();
+      const month = String(cellDate.getMonth() + 1).padStart(2, '0');
+      const day = String(cellDate.getDate()).padStart(2, '0');
+      const iso = `${year}-${month}-${day}`;
+      const formatted = cellDate.toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+      return { iso, formatted };
+    }
+
+    let originalGrid = [];
+    let currentGrid = [];
+    let totalFoodCount = 0;
+    let eatenCount = 0;
+    let isRunning = false;
+    let isFinished = false;
+    let isVisible = false;
+    let animFrameId = null;
+    let resetTimer = null;
+    let lastStepTime = 0;
+    const STEP_INTERVAL = 220; // ms per move step (50% slower, ~4.5 moves/sec)
+
+    let snakeA = null; // Rust Snake
+    let snakeB = null; // Teal Snake
+    let roundIndex = 0;
+
+    function initSnakeState() {
+      if (resetTimer) {
+        clearTimeout(resetTimer);
+        resetTimer = null;
+      }
+
+      // Alternate start positions across rounds for dynamic variety
+      const startAtLeft = (roundIndex % 2 === 0);
+
+      // Start with 4 continuous connected segments facing forward
+      snakeA = {
+        name: 'Rust Snake',
+        body: startAtLeft
+          ? [{ c: 3, r: 0 }, { c: 2, r: 0 }, { c: 1, r: 0 }, { c: 0, r: 0 }]
+          : [{ c: 49, r: 0 }, { c: 50, r: 0 }, { c: 51, r: 0 }, { c: 52, r: 0 }],
+        growth: 0,
+        score: 0,
+        dir: startAtLeft ? { dc: 1, dr: 0 } : { dc: -1, dr: 0 },
+        color: COLORS.rustHead
+      };
+
+      snakeB = {
+        name: 'Teal Snake',
+        body: startAtLeft
+          ? [{ c: 3, r: 6 }, { c: 2, r: 6 }, { c: 1, r: 6 }, { c: 0, r: 6 }]
+          : [{ c: 49, r: 6 }, { c: 50, r: 6 }, { c: 51, r: 6 }, { c: 52, r: 6 }],
+        growth: 0,
+        score: 0,
+        dir: startAtLeft ? { dc: 1, dr: 0 } : { dc: -1, dr: 0 },
+        color: COLORS.tealHead
+      };
+
+      currentGrid = originalGrid.map(cell => ({ ...cell }));
+      eatenCount = 0;
+      isFinished = false;
+      render();
+    }
+
+    function scheduleAutoReset() {
+      if (resetTimer) clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => {
+        if (isVisible) {
+          roundIndex++;
+          initSnakeState();
+        }
+      }, 1600); // Brief 1.6s pause after eating all contributions, then restarts fresh!
+    }
+
+    // Pathfinding step for single snake
+    function moveSnake(snake, otherSnake) {
+      if (isFinished) return;
+      const head = snake.body[0];
+
+      // Collect remaining active food cells
+      const remainingFood = [];
+      currentGrid.forEach(cell => {
+        if (cell.level > 0) {
+          const myDist = Math.abs(head.c - cell.col) + Math.abs(head.r - cell.row);
+          remainingFood.push({ ...cell, myDist });
+        }
+      });
+
+      if (remainingFood.length === 0) {
+        if (!isFinished) {
+          isFinished = true;
+          scheduleAutoReset();
+        }
+        return;
+      }
+
+      // Stochastic candidate selection: probabilistic proximity targeting
+      remainingFood.forEach(f => {
+        f.priority = f.myDist + (Math.random() * 4.5);
+      });
+      remainingFood.sort((a, b) => a.priority - b.priority);
+      const target = remainingFood[0];
+
+      const dirs = [
+        { dc: 0, dr: -1 },
+        { dc: 0, dr: 1 },
+        { dc: -1, dr: 0 },
+        { dc: 1, dr: 0 }
+      ];
+
+      // Filter out immediate reverse
+      const validDirs = dirs.filter(d => !(d.dc === -snake.dir.dc && d.dr === -snake.dir.dr));
+      const moves = [];
+
+      validDirs.forEach(d => {
+        const nc = head.c + d.dc;
+        const nr = head.r + d.dr;
+        if (nc >= 0 && nc < COLS && nr >= 0 && nr < ROWS) {
+          const hitsSelf = snake.body.slice(0, -1).some(b => b.c === nc && b.r === nr);
+          const hitsOther = otherSnake.body.some(b => b.c === nc && b.r === nr);
+          let dist = Math.abs(nc - target.col) + Math.abs(nr - target.row);
+          let score = dist + (hitsSelf ? 30 : 0) + (hitsOther ? 15 : 0) + (Math.random() * 0.8);
+          moves.push({ d, nc, nr, score });
+        }
+      });
+
+      if (moves.length === 0) return;
+      moves.sort((a, b) => a.score - b.score);
+      const best = moves[0];
+
+      snake.dir = best.d;
+      const newHead = { c: best.nc, r: best.nr };
+      snake.body.unshift(newHead);
+
+      // Check if food eaten
+      const targetIndex = currentGrid.findIndex(c => c.col === newHead.c && c.row === newHead.r);
+      if (targetIndex !== -1 && currentGrid[targetIndex].level > 0) {
+        const lvl = currentGrid[targetIndex].level;
+        snake.score += (lvl * 10) + Math.floor(Math.random() * 4);
+        // Grow up to 5 segments like Platane reference
+        if (snake.body.length < 5) {
+          snake.growth += 1;
+        }
+        currentGrid[targetIndex].level = 0; // digest
+        eatenCount++;
+      }
+
+      if (snake.growth > 0) {
+        snake.growth--;
+      } else {
+        snake.body.pop();
+      }
+
+      // Check completion and trigger automatic cycle reset
+      if (eatenCount >= totalFoodCount) {
+        if (!isFinished) {
+          isFinished = true;
+          scheduleAutoReset();
+        }
+      }
+    }
+
+    function stepEngine() {
+      if (isFinished) return;
+      // Fair stochastic turn order
+      if (Math.random() < 0.5) {
+        moveSnake(snakeA, snakeB);
+        moveSnake(snakeB, snakeA);
+      } else {
+        moveSnake(snakeB, snakeA);
+        moveSnake(snakeA, snakeB);
+      }
+    }
+
+    function drawRoundedRect(x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    }
+
+    function getCenter(seg) {
+      return {
+        x: OFFSET_X + seg.c * CELL_PITCH + CELL_SIZE / 2,
+        y: OFFSET_Y + seg.r * CELL_PITCH + CELL_SIZE / 2
+      };
+    }
+
+    function render() {
+      ctx.clearRect(0, 0, BASE_WIDTH, BASE_HEIGHT);
+
+      // 1. Draw contribution grid cells
+      currentGrid.forEach(cell => {
+        const x = OFFSET_X + cell.col * CELL_PITCH;
+        const y = OFFSET_Y + cell.row * CELL_PITCH;
+        const lvlKey = `c${cell.level}`;
+        const fillColor = COLORS[lvlKey] || COLORS.c0;
+
+        drawRoundedRect(x, y, CELL_SIZE, CELL_SIZE, CELL_RADIUS);
+        ctx.fillStyle = fillColor;
+        ctx.fill();
+        ctx.strokeStyle = COLORS.border;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      });
+
+      // 2. Draw authentic Platane-style snakes (tapered rounded squares, naturally connected, exactly matching reference image)
+      [snakeA, snakeB].forEach(snake => {
+        if (!snake || snake.body.length === 0) return;
+        const len = snake.body.length;
+        const body = snake.body;
+
+        // Draw from tail to head so larger head sits on top
+        for (let i = len - 1; i >= 0; i--) {
+          const seg = body[i];
+          const cx = OFFSET_X + seg.c * CELL_PITCH + CELL_SIZE / 2;
+          const cy = OFFSET_Y + seg.r * CELL_PITCH + CELL_SIZE / 2;
+
+          // Exact Platane dimensions: Head 14.4px (rx 4.5) down to Tail 9.9px (rx 3.3)
+          const t = len > 1 ? i / (len - 1) : 0;
+          const size = 14.4 - t * 4.5;
+          const rx = 4.5 - t * 1.2;
+
+          const x = cx - size / 2;
+          const y = cy - size / 2;
+
+          drawRoundedRect(x, y, size, size, rx);
+          ctx.fillStyle = snake.color;
+          ctx.fill();
+        }
+      });
+    }
+
+    function gameLoop(now) {
+      if (isRunning && isVisible && !isFinished) {
+        if (now - lastStepTime >= STEP_INTERVAL) {
+          stepEngine();
+          lastStepTime = now;
+        }
+      }
+      render();
+      animFrameId = requestAnimationFrame(gameLoop);
+    }
+
+    // Tooltip interaction
+    canvas.addEventListener('mousemove', (e) => {
+      if (!cellTooltip) return;
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = BASE_WIDTH / rect.width;
+      const scaleY = BASE_HEIGHT / rect.height;
+      const x = (e.clientX - rect.left) * scaleX;
+      const y = (e.clientY - rect.top) * scaleY;
+
+      const col = Math.floor((x - OFFSET_X) / CELL_PITCH);
+      const row = Math.floor((y - OFFSET_Y) / CELL_PITCH);
+
+      if (col >= 0 && col < COLS && row >= 0 && row < ROWS) {
+        const orig = originalGrid.find(c => c.col === col && c.row === row);
+        const dateInfo = orig ? { iso: orig.dateIso, formatted: orig.dateFormatted } : getCellDateInfo(col, row);
+        const count = (orig && typeof orig.count === 'number') ? orig.count : (commitCountMap[dateInfo.iso] || 0);
+
+        const statusStr = count > 0 ? `· ${count} ${count === 1 ? 'commit' : 'commits'}` : '· No commits';
+
+        cellTooltip.textContent = `${dateInfo.formatted} ${statusStr}`;
+        cellTooltip.classList.add('visible');
+
+        const parentRect = snakeGraphLink.getBoundingClientRect();
+        cellTooltip.style.left = `${e.clientX - parentRect.left}px`;
+        cellTooltip.style.top = `${e.clientY - parentRect.top - 14}px`;
+      } else {
+        cellTooltip.classList.remove('visible');
+      }
+    });
+
+    canvas.addEventListener('mouseleave', () => {
+      if (cellTooltip) cellTooltip.classList.remove('visible');
+    });
+
+    // Viewport IntersectionObserver
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
+            isVisible = true;
+            isRunning = true;
+          } else if (!entry.isIntersecting || entry.intersectionRatio < 0.05) {
+            isVisible = false;
+            isRunning = false;
+            roundIndex = 0;
+            if (resetTimer) {
+              clearTimeout(resetTimer);
+              resetTimer = null;
+            }
+            if (originalGrid.length > 0) {
+              initSnakeState();
+            }
+          }
+        });
+      }, { threshold: [0, 0.05, 0.15] });
+
+      observer.observe(snakeCard);
+    } else {
+      isVisible = true;
+      isRunning = true;
+    }
+
+    // Fetch and parse real GitHub contributions
+    const snakeUrl = 'https://raw.githubusercontent.com/Bikram-Gorai/Bikram-Gorai/output/github-snake.svg';
+    fetch(snakeUrl)
+      .then(res => {
+        if (!res.ok) throw new Error('Failed to load GitHub SVG');
+        return res.text();
+      })
+      .then(svgText => {
+        const rects = [];
+        const re = /<rect class="([^"]+)" x="([^"]+)" y="([^"]+)"/g;
+        let m;
+        while ((m = re.exec(svgText)) !== null) {
+          if (m[1].includes('c')) {
+            rects.push({ cls: m[1], x: parseFloat(m[2]), y: parseFloat(m[3]) });
+          }
+        }
+
+        const style = (svgText.match(/<style>([\s\S]*?)<\/style>/) || [])[1] || '';
+        const colorLevels = {};
+        const ruleRe = /\.c\.([a-zA-Z0-9_\-]+)\s*\{fill:\s*var\((--c[0-4])\)/g;
+        while ((m = ruleRe.exec(style)) !== null) {
+          colorLevels[m[1]] = parseInt(m[2].replace('--c', ''), 10);
+        }
+
+        originalGrid = [];
+        rects.forEach(r => {
+          const col = Math.round((r.x - 2) / 16);
+          const row = Math.round((r.y - 2) / 16);
+          const parts = r.cls.split(' ');
+          const subCls = parts.find(p => p !== 'c' && p.startsWith('c'));
+          let level = (subCls && colorLevels[subCls]) ? colorLevels[subCls] : 0;
+
+          const dateInfo = getCellDateInfo(col, row);
+          const realCount = commitCountMap[dateInfo.iso] || 0;
+          if (realCount > 0 && level === 0) {
+            level = 1;
+          }
+
+          originalGrid.push({
+            col,
+            row,
+            level,
+            count: realCount,
+            dateIso: dateInfo.iso,
+            dateFormatted: dateInfo.formatted
+          });
+        });
+
+        totalFoodCount = originalGrid.filter(c => c.level > 0).length;
+
+        // Initialize simulation
+        initSnakeState();
+        if (window.lucide) window.lucide.createIcons();
+        animFrameId = requestAnimationFrame(gameLoop);
+
+        // Asynchronously sync with live GitHub contributions API for real-time accuracy
+        const contribApiUrl = 'https://github-contributions-api.jogruber.de/v4/BIKRAM-GORAI';
+        fetch(contribApiUrl)
+          .then(res => res.ok ? res.json() : null)
+          .then(apiData => {
+            if (apiData && Array.isArray(apiData.contributions)) {
+              apiData.contributions.forEach(item => {
+                if (item.count > 0) {
+                  commitCountMap[item.date] = item.count;
+                }
+              });
+
+              // Update grid cells with fresh live counts and levels
+              originalGrid.forEach(cell => {
+                if (cell.dateIso && commitCountMap[cell.dateIso] !== undefined) {
+                  cell.count = commitCountMap[cell.dateIso];
+                  if (cell.count > 0 && cell.level === 0) {
+                    cell.level = 1;
+                  }
+                }
+              });
+
+              currentGrid.forEach(cell => {
+                const orig = originalGrid.find(o => o.col === cell.col && o.row === cell.row);
+                if (orig) {
+                  cell.count = orig.count;
+                }
+              });
+
+              totalFoodCount = originalGrid.filter(c => c.level > 0).length;
+            }
+          })
+          .catch(() => {
+            // Bundled fallback remains active
+          });
+      })
+      .catch(() => {
+        const fallbackImg = document.getElementById('github-snake-fallback-img');
+        if (fallbackImg) fallbackImg.style.display = 'block';
+        if (canvas) canvas.style.display = 'none';
+      });
+  }
 });
 
 /* ==========================================================================

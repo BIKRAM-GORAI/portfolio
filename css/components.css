@@ -1345,3 +1345,291 @@ mark.neo-highlight-mint, span.neo-highlight-mint {
   }
 }
 
+/* --------------------------------------------------------------------------
+   GitHub Contribution Snake Card Component (Static, Clean, Grounded)
+   -------------------------------------------------------------------------- */
+.github-snake-card {
+  padding: 2.25rem;
+  background: var(--bg-card);
+  border: 1.5px solid var(--text-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-3d);
+  margin-top: 4.5rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: none !important;
+  transform: none !important;
+}
+
+/* Big box is strictly static on hover per user request — no resize, no tilt, no jump */
+.github-snake-card:hover {
+  transform: none !important;
+  box-shadow: var(--shadow-3d) !important;
+  border-color: var(--text-primary) !important;
+}
+
+.github-snake-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.github-snake-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.github-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #16A085;
+  background-color: rgba(22, 160, 133, 0.08);
+  border: 1px solid rgba(22, 160, 133, 0.35);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.04em;
+}
+
+/* Steady green indicator dot — NO blinking/pulsing */
+.github-live-dot {
+  width: 7.5px;
+  height: 7.5px;
+  background-color: #16A085;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Neo-brutalist highlighted profile handle */
+.github-neo-handle {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 0.3rem 0.75rem;
+  border: 1.5px solid var(--text-primary);
+  border-radius: var(--radius-sm);
+  box-shadow: 2.5px 2.5px 0px var(--text-primary);
+  letter-spacing: 0.03em;
+  user-select: all;
+  display: inline-block;
+}
+
+.github-snake-meta-row {
+  margin-bottom: 1.25rem;
+}
+
+#github-dual-snake-canvas {
+  width: 95%;
+  max-width: 95%;
+  min-width: 620px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  user-select: none;
+  border-radius: var(--radius-sm);
+}
+
+/* Direct Clickable Graph Area — NO nested box */
+.github-snake-graph-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  margin: 0.5rem 0 1.25rem 0;
+  width: 100%;
+  position: relative;
+  transition: none !important;
+  transform: none !important;
+}
+
+.github-snake-graph-link:hover {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* GitHub Contribution Snake Play/Pause & Viewport Reset State */
+.github-snake-canvas-area.github-snake-paused svg,
+.github-snake-canvas-area.github-snake-paused svg * {
+  animation-play-state: paused !important;
+}
+
+.github-snake-canvas-area {
+  width: 100%;
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-light) transparent;
+}
+
+.github-snake-canvas-area::-webkit-scrollbar {
+  height: 5px;
+}
+
+.github-snake-canvas-area::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: var(--radius-pill);
+}
+
+.github-snake-canvas-area::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-rust);
+}
+
+/* Interactive Date Tooltip on Hover */
+.github-cell-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: #1A1A1A;
+  color: #F5F2EB;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.28rem 0.65rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 100;
+  opacity: 0;
+  transform: translate(-50%, -100%);
+  transition: opacity 0.12s ease;
+  letter-spacing: 0.02em;
+}
+
+.github-cell-tooltip.visible {
+  opacity: 1;
+}
+
+.github-snake-canvas-area rect.c {
+  transition: stroke 0.1s ease, stroke-width 0.1s ease;
+}
+
+.github-snake-canvas-area rect.c:hover {
+  stroke: var(--text-primary) !important;
+  stroke-width: 1.5px !important;
+}
+
+/* 5% smaller width for balanced breathing room inside card */
+.github-snake-media {
+  width: 95%;
+  max-width: 95%;
+  min-width: 620px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Bottom Bar directly on the card */
+.github-snake-bottom-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-light);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-primary);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.github-snake-footer-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-weight: 600;
+}
+
+/* Steady terracotta clock dot — NO blinking/pulsing */
+.live-clock-dot {
+  width: 7.5px;
+  height: 7.5px;
+  border-radius: 50%;
+  background-color: var(--accent-rust);
+  display: inline-block;
+}
+
+.live-clock-text {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: 0.04em;
+}
+
+.github-snake-mobile-swipe-hint {
+  display: none;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--accent-rust);
+  font-weight: 600;
+}
+
+.github-snake-action-pill {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  border: 1.25px solid var(--text-primary);
+  background-color: #FAFAF7;
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.github-snake-action-pill:hover {
+  background-color: var(--accent-rust);
+  color: #FFFFFF;
+  border-color: var(--accent-rust);
+  transform: translateY(-1px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .github-snake-card {
+    padding: 1.5rem 1.25rem;
+    margin-top: 3.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .github-snake-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .github-snake-mobile-swipe-hint {
+    display: inline-flex;
+  }
+  .github-snake-canvas-area {
+    justify-content: flex-start;
+  }
+  .github-snake-bottom-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .github-snake-action-pill {
+    align-self: flex-start;
+  }
+}
+
+

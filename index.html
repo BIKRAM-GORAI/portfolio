@@ -18,6 +18,7 @@
   <link rel="prefetch" href="assets/images/projects/anya.png" as="image">
   <link rel="prefetch" href="assets/images/photography/bg1.png" as="image">
   <link rel="prefetch" href="assets/images/photography/bg4.png" as="image">
+  <link rel="prefetch" href="https://raw.githubusercontent.com/Bikram-Gorai/Bikram-Gorai/output/github-snake.svg" as="image">
 
   <!-- Favicon & Touch Icon -->
   <link rel="icon" type="image/png" href="assets/images/0.png">
@@ -260,6 +261,54 @@
           <div style="margin-top: 1rem;">
             <a href="https://anya-voice-ai.vercel.app/" target="_blank" rel="noopener" class="link-arrow">Try Anya Voice AI</a>
           </div>
+        </div>
+      </div>
+
+      <!-- Live GitHub Activity & Contribution Showcase -->
+      <div class="github-snake-card">
+        <div class="github-snake-card-header">
+          <div class="github-snake-badge-group">
+            <span class="tag-pill rust">LIVE ACTIVITY</span>
+            <span class="github-live-badge">
+              <span class="github-live-dot"></span>
+              <span>DAILY COMMIT LOG</span>
+            </span>
+          </div>
+          
+          <mark class="neo-highlight github-neo-handle">github.com/BIKRAM-GORAI</mark>
+        </div>
+
+        <div class="github-snake-meta-row">
+          <h3 class="card-title" style="margin-bottom: 0.4rem;">
+            Building Projects Regularly &amp; Consistently
+          </h3>
+          <p class="card-description" style="max-width: 780px; font-size: 0.95rem; line-height: 1.6;">
+            A live record of my daily coding progress across backend architectures, C++ problem solving, and full-stack projects like Consistency Daily and Eventix.
+          </p>
+        </div>
+
+        <!-- Direct Graph Area with Canvas & Tooltip -->
+        <div class="github-snake-graph-link" title="Hover over cells to inspect dates">
+          <div class="github-snake-canvas-area" id="github-snake-viewport">
+            <canvas id="github-dual-snake-canvas" width="852" height="116"></canvas>
+            <img alt="Bikram Gorai GitHub Contribution Snake" src="https://raw.githubusercontent.com/Bikram-Gorai/Bikram-Gorai/output/github-snake.svg" class="github-snake-media" id="github-snake-fallback-img" style="display: none;" loading="lazy" decoding="async">
+          </div>
+          <div id="github-cell-tooltip" class="github-cell-tooltip"></div>
+        </div>
+
+        <!-- Bottom Card Action & Live Clock Bar -->
+        <div class="github-snake-bottom-bar">
+          <div class="github-snake-footer-left">
+            <span class="live-clock-dot"></span>
+            <span id="live-clock-time" class="live-clock-text">ASANSOL · --:--:-- IST</span>
+          </div>
+          <div class="github-snake-mobile-swipe-hint">
+            <span>Swipe horizontally for all 52 weeks ➔</span>
+          </div>
+          <a href="https://github.com/BIKRAM-GORAI" target="_blank" rel="noopener" class="btn-primary btn-sm" onclick="this.blur()" title="View GitHub Profile">
+            <span>View Profile</span>
+            <i data-lucide="arrow-up-right" style="width: 14px; height: 14px; stroke-width: 2.2;"></i>
+          </a>
         </div>
       </div>
 

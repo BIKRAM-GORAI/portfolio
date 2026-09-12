@@ -279,6 +279,7 @@
 .card-span-6 { grid-column: span 6; }
 .card-span-4 { grid-column: span 4; }
 .card-span-8 { grid-column: span 8; }
+.card-span-12 { grid-column: span 12; }
 
 .rotation-card {
   background: var(--bg-card);
@@ -1352,7 +1353,7 @@
   .hero-art-wrapper {
     order: -1;
   }
-  .card-span-6, .card-span-4, .card-span-8 {
+  .card-span-6, .card-span-4, .card-span-8, .card-span-12 {
     grid-column: span 12;
   }
   .project-featured-card {

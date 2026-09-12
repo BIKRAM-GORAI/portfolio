@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --------------------------------------------------------------------------
   // 5. CARD MAGNETIC PARALLAX TILT EFFECT
   // --------------------------------------------------------------------------
-  document.querySelectorAll('.rotation-card, .hackathon-card').forEach(card => {
+  document.querySelectorAll('.rotation-card:not(.github-snake-card), .hackathon-card').forEach(card => {
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
