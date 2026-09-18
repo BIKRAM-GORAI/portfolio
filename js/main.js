@@ -147,18 +147,18 @@ document.addEventListener('DOMContentLoaded', () => {
     canvas.height = BASE_HEIGHT * dpr;
     ctx.scale(dpr, dpr);
 
-    // Color tokens matching portfolio neo-brutalist theme
+    // Color tokens matching GitHub contribution greens and dual snakes
     const COLORS = {
-      c0: '#EBE5D9', // Empty / digested background
-      c1: '#F6C4B0', // Level 1
-      c2: '#E68A6B', // Level 2
-      c3: '#B24726', // Level 3 (brand rust)
-      c4: '#6D250E', // Level 4 (dark espresso)
-      border: 'rgba(26, 26, 26, 0.14)',
+      c0: '#ebedf0', // GitHub empty / digested background
+      c1: '#9be9a8', // Level 1 (GitHub authentic light green)
+      c2: '#40c463', // Level 2 (GitHub authentic medium green)
+      c3: '#30a14e', // Level 3 (GitHub authentic bold green)
+      c4: '#216e39', // Level 4 (GitHub authentic deep forest green)
+      border: 'rgba(27, 31, 35, 0.08)',
       rustHead: '#B24726',
       rustBody: '#D96B43',
-      tealHead: '#2A9D8F',
-      tealBody: '#52B788'
+      blueHead: '#2563EB',
+      blueBody: '#3B82F6'
     };
 
     // Exact commit counts store (bundled snapshot + live API sync)
@@ -192,14 +192,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let animFrameId = null;
     let resetTimer = null;
     let lastStepTime = 0;
-    const STEP_INTERVAL = 220; // ms per move step (50% slower, ~4.5 moves/sec)
+    let pendingEats = [];
+    const STEP_INTERVAL = 180; // ms per grid step (smooth continuous 60fps glide)
 
     function isMobileScreen() {
       return window.innerWidth <= 768;
     }
 
     let snakeA = null; // Rust Snake
-    let snakeB = null; // Teal Snake
+    let snakeB = null; // Cobalt Snake
     let roundIndex = 0;
 
     function initSnakeState() {
@@ -215,29 +216,53 @@ document.addEventListener('DOMContentLoaded', () => {
       snakeA = {
         name: 'Rust Snake',
         body: startAtLeft
-          ? [{ c: 3, r: 0 }, { c: 2, r: 0 }, { c: 1, r: 0 }, { c: 0, r: 0 }]
-          : [{ c: 49, r: 0 }, { c: 50, r: 0 }, { c: 51, r: 0 }, { c: 52, r: 0 }],
+          ? [
+              { c: 3, r: 0, prevC: 3, prevR: 0 },
+              { c: 2, r: 0, prevC: 2, prevR: 0 },
+              { c: 1, r: 0, prevC: 1, prevR: 0 },
+              { c: 0, r: 0, prevC: 0, prevR: 0 }
+            ]
+          : [
+              { c: 49, r: 0, prevC: 49, prevR: 0 },
+              { c: 50, r: 0, prevC: 50, prevR: 0 },
+              { c: 51, r: 0, prevC: 51, prevR: 0 },
+              { c: 52, r: 0, prevC: 52, prevR: 0 }
+            ],
         growth: 0,
         score: 0,
         dir: startAtLeft ? { dc: 1, dr: 0 } : { dc: -1, dr: 0 },
-        color: COLORS.rustHead
+        color: COLORS.rustHead,
+        bodyColor: COLORS.rustBody
       };
 
       snakeB = {
-        name: 'Teal Snake',
+        name: 'Cobalt Snake',
         body: startAtLeft
-          ? [{ c: 3, r: 6 }, { c: 2, r: 6 }, { c: 1, r: 6 }, { c: 0, r: 6 }]
-          : [{ c: 49, r: 6 }, { c: 50, r: 6 }, { c: 51, r: 6 }, { c: 52, r: 6 }],
+          ? [
+              { c: 3, r: 6, prevC: 3, prevR: 6 },
+              { c: 2, r: 6, prevC: 2, prevR: 6 },
+              { c: 1, r: 6, prevC: 1, prevR: 6 },
+              { c: 0, r: 6, prevC: 0, prevR: 6 }
+            ]
+          : [
+              { c: 49, r: 6, prevC: 49, prevR: 6 },
+              { c: 50, r: 6, prevC: 50, prevR: 6 },
+              { c: 51, r: 6, prevC: 51, prevR: 6 },
+              { c: 52, r: 6, prevC: 52, prevR: 6 }
+            ],
         growth: 0,
         score: 0,
         dir: startAtLeft ? { dc: 1, dr: 0 } : { dc: -1, dr: 0 },
-        color: COLORS.tealHead
+        color: COLORS.blueHead,
+        bodyColor: COLORS.blueBody
       };
 
       currentGrid = originalGrid.map(cell => ({ ...cell }));
       eatenCount = 0;
+      pendingEats = [];
       isFinished = false;
-      render();
+      lastStepTime = 0;
+      render(1);
       alignSnakeViewportRight();
     }
 
@@ -333,8 +358,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const best = moves[0];
 
       snake.dir = best.d;
-      const newHead = { c: best.nc, r: best.nr };
-      snake.body.unshift(newHead);
+      const oldPositions = snake.body.map(seg => ({ c: seg.c, r: seg.r }));
+      const newHead = {
+        c: best.nc,
+        r: best.nr,
+        prevC: oldPositions[0].c,
+        prevR: oldPositions[0].r
+      };
+
+      const newBody = [newHead];
+      for (let i = 0; i < oldPositions.length; i++) {
+        const prev = (i + 1 < oldPositions.length) ? oldPositions[i + 1] : oldPositions[i];
+        newBody.push({
+          c: oldPositions[i].c,
+          r: oldPositions[i].r,
+          prevC: prev.c,
+          prevR: prev.r
+        });
+      }
 
       // Check if food eaten
       const targetIndex = currentGrid.findIndex(c => c.col === newHead.c && c.row === newHead.r);
@@ -342,18 +383,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const lvl = currentGrid[targetIndex].level;
         snake.score += (lvl * 10) + Math.floor(Math.random() * 4);
         // Grow up to 5 segments like Platane reference
-        if (snake.body.length < 5) {
+        if (newBody.length < 5) {
           snake.growth += 1;
         }
-        currentGrid[targetIndex].level = 0; // digest
+        pendingEats.push({ targetIndex });
         eatenCount++;
       }
 
       if (snake.growth > 0) {
         snake.growth--;
       } else {
-        snake.body.pop();
+        newBody.pop();
       }
+
+      snake.body = newBody;
 
       // Check completion and trigger automatic cycle reset
       if (eatenCount >= totalFoodCount) {
@@ -366,6 +409,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function stepEngine() {
       if (isFinished) return;
+
+      // Ensure any pending digestions from previous step are applied
+      if (pendingEats.length > 0) {
+        pendingEats.forEach(item => {
+          if (currentGrid[item.targetIndex]) {
+            currentGrid[item.targetIndex].level = 0;
+          }
+        });
+        pendingEats = [];
+      }
+
       // Fair stochastic turn order
       if (Math.random() < 0.5) {
         moveSnake(snakeA, snakeB);
@@ -393,7 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
 
-    function render() {
+    function render(progress = 1) {
       ctx.clearRect(0, 0, BASE_WIDTH, BASE_HEIGHT);
 
       // On mobile screens (<= 768px), display the full intact contribution graph without snakes
@@ -417,6 +471,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 2. Snake animation ONLY enabled on desktop screens (> 768px)
       if (!isMobile) {
+        // Clear pending eats midway through the step as the head enters the target cell
+        if (progress >= 0.55 && pendingEats.length > 0) {
+          pendingEats.forEach(item => {
+            if (currentGrid[item.targetIndex]) {
+              currentGrid[item.targetIndex].level = 0;
+            }
+          });
+          pendingEats = [];
+        }
+
         [snakeA, snakeB].forEach(snake => {
           if (!snake || snake.body.length === 0) return;
           const len = snake.body.length;
@@ -425,8 +489,15 @@ document.addEventListener('DOMContentLoaded', () => {
           // Draw from tail to head so larger head sits on top
           for (let i = len - 1; i >= 0; i--) {
             const seg = body[i];
-            const cx = OFFSET_X + seg.c * CELL_PITCH + CELL_SIZE / 2;
-            const cy = OFFSET_Y + seg.r * CELL_PITCH + CELL_SIZE / 2;
+            const curC = (seg.prevC !== undefined)
+              ? seg.prevC + (seg.c - seg.prevC) * progress
+              : seg.c;
+            const curR = (seg.prevR !== undefined)
+              ? seg.prevR + (seg.r - seg.prevR) * progress
+              : seg.r;
+
+            const cx = OFFSET_X + curC * CELL_PITCH + CELL_SIZE / 2;
+            const cy = OFFSET_Y + curR * CELL_PITCH + CELL_SIZE / 2;
 
             // Exact Platane dimensions: Head 14.4px (rx 4.5) down to Tail 9.9px (rx 3.3)
             const t = len > 1 ? i / (len - 1) : 0;
@@ -437,7 +508,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const y = cy - size / 2;
 
             drawRoundedRect(x, y, size, size, rx);
-            ctx.fillStyle = snake.color;
+            ctx.fillStyle = (i === 0) ? snake.color : (snake.bodyColor || snake.color);
             ctx.fill();
           }
         });
@@ -447,12 +518,26 @@ document.addEventListener('DOMContentLoaded', () => {
     function gameLoop(now) {
       // Snake simulation engine runs exclusively on desktop screens
       if (isRunning && isVisible && !isFinished && !isMobileScreen()) {
-        if (now - lastStepTime >= STEP_INTERVAL) {
+        if (!lastStepTime) {
+          lastStepTime = now;
+        }
+        const elapsed = now - lastStepTime;
+
+        if (elapsed > STEP_INTERVAL * 2) {
+          // Tab restored from background inactivity
+          lastStepTime = now;
+        } else if (elapsed >= STEP_INTERVAL) {
           stepEngine();
           lastStepTime = now;
         }
       }
-      render();
+
+      // Compute smooth interpolation progress [0..1]
+      const progress = (!isFinished && isRunning && lastStepTime)
+        ? Math.min(1, Math.max(0, (now - lastStepTime) / STEP_INTERVAL))
+        : 1;
+
+      render(progress);
       animFrameId = requestAnimationFrame(gameLoop);
     }
 
