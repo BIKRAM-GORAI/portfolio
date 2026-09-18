@@ -276,13 +276,7 @@
       <!-- Live GitHub Activity & Contribution Showcase -->
       <div class="github-snake-card">
         <div class="github-snake-card-header">
-          <div class="github-snake-badge-group">
-            <span class="tag-pill rust">LIVE ACTIVITY</span>
-            <span class="github-live-badge">
-              <span class="github-live-dot"></span>
-              <span>DAILY COMMIT LOG</span>
-            </span>
-          </div>
+          <mark class="neo-highlight github-graph-title">GitHub Contribution Graph</mark>
           
           <mark class="neo-highlight github-neo-handle">github.com/BIKRAM-GORAI</mark>
         </div>
@@ -299,8 +293,11 @@
         <!-- Direct Graph Area with Canvas & Tooltip -->
         <div class="github-snake-graph-link" title="Hover over cells to inspect dates">
           <div class="github-snake-canvas-area" id="github-snake-viewport">
-            <canvas id="github-dual-snake-canvas" width="852" height="116"></canvas>
-            <img alt="Bikram Gorai GitHub Contribution Snake" src="https://raw.githubusercontent.com/Bikram-Gorai/Bikram-Gorai/output/github-snake.svg" class="github-snake-media" id="github-snake-fallback-img" style="display: none;" loading="lazy" decoding="async">
+            <div class="github-graph-container">
+              <div class="github-graph-month-timeline" id="github-graph-month-timeline"></div>
+              <canvas id="github-dual-snake-canvas" width="852" height="116"></canvas>
+              <img alt="Bikram Gorai GitHub Contribution Snake" src="https://raw.githubusercontent.com/Bikram-Gorai/Bikram-Gorai/output/github-snake.svg" class="github-snake-media" id="github-snake-fallback-img" style="display: none;" loading="lazy" decoding="async">
+            </div>
           </div>
           <div id="github-cell-tooltip" class="github-cell-tooltip"></div>
         </div>

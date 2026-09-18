@@ -179,7 +179,55 @@ document.addEventListener('DOMContentLoaded', () => {
         day: 'numeric',
         year: 'numeric'
       });
-      return { iso, formatted };
+      return { iso, formatted, date: cellDate };
+    }
+
+    // Populate GitHub-style month sequence across the columns (Oct, Nov, Dec, Jan, Feb...)
+    function updateMonthTimeline() {
+      const timelineEl = document.getElementById('github-graph-month-timeline');
+      if (!timelineEl) return;
+
+      timelineEl.innerHTML = '';
+      const shortMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+      const monthEntries = [];
+      let prevM = -1;
+
+      for (let col = 0; col < COLS; col++) {
+        const dateInfo = getCellDateInfo(col, 0);
+        const d = dateInfo.date;
+        const m = d.getMonth();
+        if (col === 0 || m !== prevM) {
+          monthEntries.push({ col, monthIndex: m, date: d });
+          prevM = m;
+        }
+      }
+
+      // Filter to ensure clean spacing without crowding (skip partial first month if <= 3 cols from next)
+      const visible = [];
+      for (let i = 0; i < monthEntries.length; i++) {
+        const entry = monthEntries[i];
+        const nextEntry = monthEntries[i + 1];
+        if (nextEntry && (nextEntry.col - entry.col) <= 3) {
+          continue;
+        }
+        if (visible.length > 0 && (entry.col - visible[visible.length - 1].col) < 3) {
+          continue;
+        }
+        visible.push(entry);
+      }
+
+      visible.forEach(v => {
+        const label = document.createElement('span');
+        label.className = 'github-graph-month-label';
+        label.textContent = shortMonths[v.monthIndex];
+        const leftPct = ((OFFSET_X + v.col * CELL_PITCH) / BASE_WIDTH) * 100;
+        label.style.left = `${leftPct.toFixed(2)}%`;
+        if (leftPct > 90) {
+          label.style.transform = 'translateX(-80%)';
+        }
+        timelineEl.appendChild(label);
+      });
     }
 
     let originalGrid = [];
@@ -262,6 +310,10 @@ document.addEventListener('DOMContentLoaded', () => {
       pendingEats = [];
       isFinished = false;
       lastStepTime = 0;
+
+      // Initialize dynamic GitHub-style month sequence across the columns
+      updateMonthTimeline();
+
       render(1);
       alignSnakeViewportRight();
     }
@@ -655,6 +707,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         totalFoodCount = originalGrid.filter(c => c.level > 0).length;
 
+        // Update month timeline across parsed grid columns
+        updateMonthTimeline();
+
         // Initialize simulation
         initSnakeState();
         alignSnakeViewportRight(true);
@@ -691,6 +746,9 @@ document.addEventListener('DOMContentLoaded', () => {
               });
 
               totalFoodCount = originalGrid.filter(c => c.level > 0).length;
+
+              // Update month timeline with latest data
+              updateMonthTimeline();
             }
           })
           .catch(() => {

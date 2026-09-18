@@ -1378,6 +1378,21 @@ mark.neo-highlight-mint, span.neo-highlight-mint {
   margin-bottom: 1.25rem;
 }
 
+.github-graph-title {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.015em;
+  padding: 0.35rem 0.85rem;
+  border: 1.5px solid var(--text-primary);
+  border-radius: var(--radius-sm);
+  box-shadow: 2.5px 2.5px 0px var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.25;
+}
+
 .github-snake-badge-group {
   display: flex;
   align-items: center;
@@ -1428,9 +1443,8 @@ mark.neo-highlight-mint, span.neo-highlight-mint {
 }
 
 #github-dual-snake-canvas {
-  width: 95%;
-  max-width: 95%;
-  min-width: 620px;
+  width: 100%;
+  max-width: 100%;
   height: auto;
   display: block;
   margin: 0 auto;
@@ -1474,6 +1488,36 @@ mark.neo-highlight-mint, span.neo-highlight-mint {
   padding: 0.5rem 0;
   scrollbar-width: thin;
   scrollbar-color: var(--border-light) transparent;
+}
+
+/* Container aligning range labels and canvas across full card width */
+.github-graph-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  min-width: 680px;
+  margin: 0 auto;
+}
+
+.github-graph-month-timeline {
+  position: relative;
+  width: 100%;
+  height: 18px;
+  margin-bottom: 0.4rem;
+  user-select: none;
+  overflow: visible;
+}
+
+.github-graph-month-label {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  line-height: 1;
 }
 
 .github-snake-canvas-area::-webkit-scrollbar {
@@ -1623,6 +1667,7 @@ mark.neo-highlight-mint, span.neo-highlight-mint {
     justify-content: flex-start;
     padding: 0.5rem 0.15rem;
   }
+  .github-graph-container,
   #github-dual-snake-canvas,
   .github-snake-media {
     min-width: 852px;
